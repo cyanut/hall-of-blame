@@ -1,13 +1,12 @@
 #from gevent import monkey; monkey.patch_all()
 #from gevent.queue import Queue
 from multiprocessing import Queue
-from gevent import monkey
-monkey.patch_all(thread=False, socket=False)
 
 from flask import Flask, render_template
 from proxy import proxy, proxy_request, request
 from listener import serve
 from multiprocessing import Process
+import pprint
 import json
 
 app = Flask(__name__)
@@ -18,14 +17,6 @@ q = Queue()
 listener = None
 res_buff = []
 
-'''
-class RegexConverter(BaseConverter):
-    def __init__(self, url_map, *items):
-        super(RegexConverter, self).__init__(url_map)
-        self.regex = items[0]
-
-app.url_map.converters['regex'] = RegexConverter
-'''
 
 @app.route('/')
 def main_page():
@@ -38,6 +29,7 @@ def main_page():
 
 @app.route('/grievances')
 def result():
+    msg = ""
     if listener is None or not listener.is_alive():
         msg = "waiting for connection ..."
     return render_template('result.html', msg=msg)
@@ -45,15 +37,15 @@ def result():
 
 def format_data(data):
     res = []
-    import pprint 
     for d in data:
-        pprint.pprint(d)
         if d["type"] == "this_table":
-            s = render_template('board.html', d)
+            s = render_template('board.html', **d)
         elif d["type"] == "other_tables":
-            s = render_template('other_tables.html', d)
+            s = render_template('other_tables.html', **d)
         res.append({"board_num":d["board_num"], "content":s})
-    return res
+    pprint.pprint(res)
+    pprint.pprint("^^^^^^^^^^^^^^^^^^^^^^^^")
+    return json.dumps(res)
 
 
 @app.route('/poll/<int:n>')
@@ -95,7 +87,7 @@ def bbo_static(fname, ftype):
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1:
-        app.run(debug=True, port=8001)
+        app.run(debug=True, port=8001, threaded=True)
     else:
         from gevent.wsgi import WSGIServer
         http_server = WSGIServer(("", 8001), app)

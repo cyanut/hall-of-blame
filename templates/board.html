@@ -59,7 +59,7 @@
                     <td></td>
                 {% endfor %}
                 {% for bid in bids %}
-                <td class="{% if bid.alert == "Y"%}bid_alert{%endif%} {% if bid.explain%}bid_explain{%endif%}" title='{{bid.explain}}'>bid.call</td>
+                <td class="{% if bid.alert == "Y"%}bid_alert{%endif%} {% if bid.explain%}bid_explain{%endif%}" title='{{bid.explain}}'>{{bid.call}}</td>
                 {% if (loop.index + deal.dealer_num) % 4 == 0 %}
                 </tr>
                 <tr>
@@ -72,7 +72,7 @@
 
         </td>
         <td>
-            {{ render_hand(deal.labelsouth, deal.all.S}}
+            {{ render_hand(deal.labelsouth, deal.all.S) }}
         </td>
         <td>
             matrix
@@ -89,8 +89,9 @@
         <tr>
             {% for card in round %}
             <td class="{%if card[3]%}lead_card{%endif%} {%if card[2]>0%} good_card {%endif%} {%if card[2]>0%} bad_card {%endif%}">
-                    {{card[0]}}<sub>{{"{+d}".format(card[2])}}</sub>
+                    {{card[0]}}<sub>{{"{:+d}".format(card[2])}}</sub>
             </td>
+            {% endfor %}
         </tr>
         {% endfor %}
     </table>

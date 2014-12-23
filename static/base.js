@@ -12,13 +12,16 @@ function wait_for_update() {
         $.ajax({ url: '/poll/'+last_board_num,
                  success: function(data){
                             display_data(data), 
-                            wait_for_update();
+                            setTimeout(wait_for_update);
                  },
                  complete: function () {
                     waiting_for_update = false;
-                    wait_for_update(); 
+                    setTimeout(wait_for_update, 3000); 
                  },
                  timeout:  LONG_POLL_DURATION,
+                 error: function () {
+                     setTimeout(wait_for_update, 3000);
+                 },
                });
     }
 }
@@ -28,6 +31,7 @@ function display_data(data_list) {
     
     for (i=0; i<data_list.length; i++){
         data = data_list[i];
+        console.log(data);
         boards[data.board_num] = data;
         last_board_num = data.board_num;
         
