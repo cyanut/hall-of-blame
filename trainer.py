@@ -59,7 +59,7 @@ def analyze_par(pbn_deal, dealer, vul):
     if ret != 1:
         print("!!!!!!!", ret)
         return None
-    return {"dd_table" : [list(x) for x in table_res.resTable],
+    return {"dd_table" : list(zip(seat_table, [list(x) for x in table_res.resTable])),
             "score":par_res.score, 
             "contracts":[x.value for x in par_res.contracts[:par_res.number]]}
 
@@ -191,7 +191,8 @@ def format_board_res(packet_xml):
 
     game_result['board_num'] = int(game_result['deal']['board'])
 
-
+    if not "analysis" in game_result:
+        game_result["analysis"] = {}
     game_result["analysis"]["par"] = analyze_par(\
             game_result["deal"]["pbn"],
             game_result["deal"]["dealer"],

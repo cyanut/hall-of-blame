@@ -11,6 +11,7 @@ import json
 
 app = Flask(__name__)
 
+
 SRV_ADDR="192.155.229.163"
 PORT = 3336
 q = Queue()
@@ -42,9 +43,9 @@ def format_data(data):
             s = render_template('board.html', **d)
         elif d["type"] == "other_tables":
             s = render_template('other_tables.html', **d)
+        #json doesn't like new lines
+        s = s.replace("\n","")
         res.append({"board_num":d["board_num"], "content":s})
-    pprint.pprint(res)
-    pprint.pprint("^^^^^^^^^^^^^^^^^^^^^^^^")
     return json.dumps(res)
 
 
@@ -67,6 +68,17 @@ def poll(n):
     data = q.get(block=True)
     res_buff.append(data)
     return format_data([data])
+
+@app.route('/test/<int:n>')
+def test(n):
+    from test_data import game_res
+    print(format_data(game_res))
+    return format_data(game_res)
+
+@app.route('/dump')
+def dump():
+    import pickle
+    pickle.dump(res_buff, open("game_res.pkl","wb"))
 
 '''
 @app.route('/v2/<fname>.php?<data>', methods=["GET", "POST", "PUT"])
