@@ -1,0 +1,16 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title> Airing of Grievances </title>
+    <script src="static/jquery-1.11.2.min.js"></script>
+    <script src="static/base.js"></script>
+</head>
+<body>
+{% block body %}
+
+template test @ {{ address }}:{{port}} {% for a in "abc"%}{{a}}{{a}}{%endfor%}
+<embed src="static/bbo/BBOMainLine.swf" quality="high" wmode="transparent" bgcolor="#869ca7" name="BBOMainLine" allowscriptaccess="sameDomain" pluginspage="http://www.adobe.com/go/getflashplayer" flashvars="s={{address}}&port={{port}}&altport=80&vugraphonly=n&language=en" type="application/x-shockwave-flash" align="middle" height="100%" width="100%">
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+<tableMenu>	
+	<menu>
+		<listItem xlate="V0106" label="Recent tournaments" type="tourneyList"/>
+		<listItem xlate="V0107" label="Recent hands" type="myhands_request"/>
+		<listItem xlate="V0108" label="My favorite hands" type="resultList" invisible="y" />
+		<list xlate="V0109" label="Vugraph archive" invisible="y">	
+			<list label="The best of Fred">
+				<listItem label="Fred takes the Spingold" type="vugraph" url="fred1.lin"/>
+				<listItem label="Fred dominates in the Bermuda Bowl" type="vugraph" url="fred.lin"/>
+			</list>		
+			<list label="All other matches">
+				<listItem label="From vugraph project" type="vugraph" url="fred2.lin"/>
+			</list>
+			<listItem label="BBO log file" type="vugraph" url="fred3.lin"/>
+		</list>
+		<listItem xlate="V0110" label="Hand editor" type="editor"/>	
+		<listItem label="Search" invisible="y"/>
+	</menu>
+</tableMenu>

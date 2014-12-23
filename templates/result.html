@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body%}
+
+<div id="updated">updated</div>
+<div id="waiting">waiting for data ...</div>
+<div id="contents"></div>
+
+<script>
+    $(document).ready(function(){
+        $("div#updated").fadeOut(0);
+        $("div#waiting").fadeIn(500);
+        wait_for_update();
+    });
+</script>
+{% endblock %}
+
+
+

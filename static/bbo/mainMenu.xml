@@ -1,0 +1,116 @@
+<home>    
+	<menu style="right">	
+	    <list xlate="AC026" label="Help me find a game" allow_anon="n">
+	        <listitem xlate="V0068" label="Take me to the first seat available" type="hmfag_first" allow_anon="n" box_title="Play Bridge" box_title_xlate="V0511" button_xlate="V0507" button_command="hmfag_options" rename_titlebar="n"/>
+	        <listItem xlate="V0069" label="I have a partner. Take us to a table" type="hmfag_pard" allow_anon="n" rename_titlebar="n"/>	        
+	        <listItem xlate="V0470" label="Take me to a table with 3 robots" type="server_msg" command="hmfag_bots" allow_anon="n" rename_titlebar="n"/>
+	        <listItem xlate="V0073" label="List interesting tables" type="table_list" interest="play" allow_anon="n" />	 
+	        <listItem xlate="V0072" label="Take me to an interesting table" type="hmfag_specs"  allow_anon="y" lower="y" box_title="Watch Bridge" box_title_xlate="V0030"/>
+	        <listItem xlate="V0073" label="List interesting tables" lower="y" type="table_list" interest="kibitz" allow_anon="y" />									
+	    </list>		
+	    <listItem xlate="V0072" label="Take me to an interesting table" type="hmfag_specs" allow_anon="y" allow_nonanon="n"/>
+	    <listItem xlate="V0073" label="List interesting tables" type="table_list" interest="kibitz" allow_anon="y" allow_nonanon="n"/>
+	    <list label="Start a table" xlate="V0512" allow_anon="n" id="start_table">
+			<list label="Start an IMP Pairs table" xlate="V0522" box_title="Start a bridge table" box_title_xlate="V0515">
+				<listItem label="Reserve seats at your table" xlate="V0517" box_title="Table options" box_title_xlate="V0252" type="table_start_r" rename_titlebar="n"/>
+				<listItem label="Privacy options for your table" xlate="V0518" type="table_start_p" rename_titlebar="n"/>				
+				<listItem label="Description of your table" xlate="V0519" type="table_start_d" rename_titlebar="n"/>		
+				<listItem label="Set deal source for your table" xlate="V0648" type="table_start_ds" rename_titlebar="n"/>	
+				<listItem label="Start table - competitive game" xlate="V0520" box_title="Start an IMP Pairs table" box_title_xlate="V0522" rename_titlebar="n" lower="y" type="table_start" table_start_params="ic"/>
+				<listItem label="Start table - relaxed game" xlate="V0521" rename_titlebar="n" lower="y" type="table_start" table_start_params="ir"/>
+			</list>
+			<list label="Start a Matchpoints table" xlate="V0523">
+				<listItem label="Reserve seats at your table" xlate="V0517" box_title="Table options" box_title_xlate="V0252" type="table_start_r" rename_titlebar="n"/>
+				<listItem label="Privacy options for your table" xlate="V0518" type="table_start_p" rename_titlebar="n"/>				
+				<listItem label="Description of your table" xlate="V0519" type="table_start_d" rename_titlebar="n"/>				
+				<listItem label="Start table - competitive game" xlate="V0520" box_title="Start a Matchpoints table" box_title_xlate="V0523" lower="y" type="table_start" table_start_params="mc" rename_titlebar="n" />
+				<listItem label="Start table - relaxed game" xlate="V0521" lower="y" type="table_start" table_start_params="mr" rename_titlebar="n" />
+			</list>
+			<list label="Start a Total Points table" xlate="V0524">
+				<listItem label="Reserve seats at your table" xlate="V0517" box_title="Table options"  box_title_xlate="V0252" type="table_start_r" rename_titlebar="n"/>
+				<listItem label="Privacy options for your table" xlate="V0518" type="table_start_p" rename_titlebar="n"/>				
+				<listItem label="Description of your table" xlate="V0519" type="table_start_d" rename_titlebar="n"/>				
+				<listItem label="Start table - competitive game" xlate="V0520" box_title="Start a Total Points table" box_title_xlate="V0524" lower="y" type="table_start" table_start_params="tc" rename_titlebar="n" />
+				<listItem label="Start table - relaxed game" xlate="V0521" lower="y" type="table_start" table_start_params="tr" rename_titlebar="n" />
+			</list>		
+			<list label="Start a Vugraph table" xlate="V0662" box_title="Start a bridge table" box_title_xlate="V0515">
+				<listItem label="Reserve seats at your table" xlate="V0517" box_title="Table options" box_title_xlate="V0252" type="table_start_r" rename_titlebar="n"/>
+				<listItem label="Privacy options for your table" xlate="V0518" type="table_start_p" rename_titlebar="n"/>				
+				<listItem label="Description of your table" xlate="V0519" type="table_start_d" rename_titlebar="n"/>	
+				<listItem label="Set deal source for your table" xlate="V0648" type="table_start_dsv" rename_titlebar="n"/>			
+				<listItem label="Start Table" xlate="V0126" box_title="Start a Vugraph table" box_title_xlate="V0662" rename_titlebar="n" lower="y" type="table_start" table_start_params="vc"/>
+			</list>	
+			<listItem label="Start a Bidding table" xlate="V0525" box_title="Start a training table" box_title_xlate="V0516" lower="y" type="table_start_bidding" scoring="100" rename_titlebar="n" />			
+			<listItem label="Start a Teaching table" xlate="V0526" lower="y" type="table_start_teaching" scoring="4" rename_titlebar="n" />		
+		</list>			    
+		<list label="List all tables" xlate="V0513" stats="y" id="list_all_tables">
+			<listItem label="MSN Games Bridge Club" type="table_list" manager="zonemgr" full="n" affil="msn" stats="af"/>				
+			<listItem xlate="AC010" label="Main Bridge Club" type="table_list" manager="~bbo~mbc" full="n" stats="mbc" box_title="All tables" box_title_xlate="V0506"/>
+		    <listItem xlate="MA095" label="Relaxed Bridge Club" type="table_list" manager="bbo~si" full="n" stats="rbc"/>
+		    <list xlate="V0075" label="All Public and Private Clubs" stats="ac">		    		        
+		    	<listItem label="The WP Refugees' Bridge Club (public)" type="table_list" manager="mikefofva" full="n"/>
+		    	<listItem label="The Total Points Tournament Bridge Club (public)" type="table_list" manager="TotalPoint" full="n"/>		        
+		    	<listItem label="The Acol Bridge Club (public)" type="table_list" manager="aacol" full="n"/>		        
+		        <listItem xlate="V0076" label="All Public Clubs" type="club_list" clubs="public"/>
+				<listItem xlate="V0077" label="All Private Clubs" type="club_list" clubs="private"/>
+		    </list>									
+			<listItem xlate="AC013" label="Tournaments" type="all_tourneys" stats="tourn"/>								
+			<listItem xlate="AC014" label="Team Matches" stats="tm" type="tmatch_play"/>
+			<list xlate="AC028" label="Play Bridge for Money" allow_anon="n" commerce="y" stats="pbm" mb_list="l">					
+				<listitem xlate="AC205" label="Start New Table" type="money_start" rename_titlebar="n"/>
+				<listitem xlate="V0082" label="Manage Your Money Bridge Dollar (MB$) Account" type="urlpopup" url="http://online.bridgebase.com/mb/mbadmin.php"/>
+				<listitem xlate="F0915" label="Conditions of Contest" type="urlpopup" url="http://online.bridgebase.com/mb/mbentry.php"/>
+			</list>						
+		</list>		
+		<listItem label="List all tournaments" xlate="V0514" type="tourney_list" allow_anon="n" tourneyWhen="pending"/>		
+		<list label="Play Bridge Solitaire" xlate="V0709" allow_anon="n">
+			<listItem label="About Solitaire Bridge" type="urlpopup" url="http://doc.bridgebase.com/Solitaire_Bridge/About_Solitaire_Bridge.html" />
+			<listItem label="Start a Video Bridge game (Free)" xlate="V0712" type="table_start_solitaire" scoring="1vb1" rename_titlebar="n"/>
+			<listItem label="Start a 4-Hands game (Free)" xlate="V0711" box_title="Start a Bridge Solataire game" box_title_xlate="V0710" type="table_start_solitaire" scoring="1web4" rename_titlebar="n"/>
+			<listItem label="Just Play Bridge (Free)" xlate="V0751" type="table_start_solitaire" scoring="1web0" rename_titlebar="n"/>			
+			<listItem label="Bridge Master" type="table_start_solitaire" scoring="1bm" rename_titlebar="n" invisible="y"/>
+			<listItem label="Play in an Instant Tournament" xlate="V0740" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp" rename_titlebar="n"/>					
+		</list>	 					   
+   		<list xlate="V0083" label="ACBL World" special="y" imageURL="config/default/acblbut.gif" icon="acbl" style="jump" bbo_only="y" t_list="acbl" t_list_title_xlate="MA000" t_list_title="ACBL Masterpoint Tournaments">
+   			<list label="ACBL Masterpoint Races" buttonBar="y" box_title_xlate="V0083" box_title="ACBL World">
+   				<listItem xlate="V0094" label="Lifetime leaders" type="leader_list" mpType="2" mpTime="life"/>   
+	    		<listItem xlate="V0095" label="Yearly leaders" type="leader_list" mpType="2" mpTime="year"/>   
+			    <listItem xlate="V0096" label="Monthly leaders" type="leader_list" mpType="2" mpTime="month"/>
+			</list>   			  		    
+			<listItem xlate="MA107" label="Update your ACBL number" type="urlpopup" url="http://www.bridgebase.com/mp/orgpoints/update_acbl.php" buttonBar="y"/>			
+			<listItem xlate="V0086" label="About ACBL on BBO" type="urlpopup" url="http://online.bridgebase.com/v2/doc_acbl.html" buttonBar="y"/>
+			<list label="The American Contract Bridge League" buttonBar="y">
+				<listItem label="ACBL Home Page" type="urlnew" url="http://www.acbl.org"/>
+				<listItem label="Become an ACBL member" type="urlnew" url="https://web.acbl.org/JoinRenew/Join/index.do"/>
+				<listItem label="Find an ACBL-sanctioned bridge club" type="urlnew" url="http://www.acbl.org/play/findClub.html"/>				
+				<listItem label="Find an ACBL-accredited bridge teacher" type="urlnew" url="http://www.acbl.org/learn/findATeacher.html"/>
+				<listItem label="Upcoming ACBL tournaments" type="urlnew" url="http://www.acbl.org/play/tournaments.html"/>				
+				<listItem label="Download ACBL's free lesson software" type="urlnew" url="https://web.acbl.org/LearnToPlayBridge/"/>								
+			</list>
+		</list>		
+		<listItem label="Instant Tournaments" xlate="V0742" special="y" lower="y" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp" rename_titlebar="n"/>		
+		<listItem label="Bridge Master" special="y" lower="y" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="1bm" rename_titlebar="n" invisible="n" icon="star"/>
+   		<list xlate="V0084" label="Robot World" special="y" imageURL="config/default/robotbut.gif" icon="robot" style="jump" bbo_only="y" t_list="bot" t_list_title_xlate="V0481" t_list_title="Robot Tournaments">			
+			<listItem xlate="V0090" label="About Robot Tournaments" type="urlpopup" url="http://online.bridgebase.com/v2/doc_about_robot_tourneys.html" buttonBar="y" box_title_xlate="V0084" box_title="Robot World"/>
+			<listItem xlate="V0470" label="Play - Take me to a table with 3 robots" type="server_msg" command="hmfag_bots" allow_anon="n" buttonBar="y"/>  
+			<listItem xlate="V0469" label="Robot rentals" type="server_msg" command="rent_bots" allow_anon="n" buttonBar="y"/> 
+			<listItem xlate="V0089" label="Robot convention card" type="urlpopup"  url="http://www.bridgebase.com/doc/gib_system_notes.php" buttonBar="y"/> 
+		</list>
+		<list xlate="V0091" label="Masterpoints and Races" right="y" commerce="y" id="m_and_r">			
+				<listItem xlate="V0094" label="Lifetime leaders" type="leader_list" mpType="*" mpTime="life" box_title_xlate="V0092"/>   
+	    		<listItem xlate="V0095" label="Yearly leaders" type="leader_list" mpType="*" mpTime="year"/>   
+		    	<listItem xlate="V0096" label="Monthly leaders" type="leader_list" mpType="*" mpTime="month"/>
+				<listItem xlate="V0094" label="Lifetime leaders" type="leader_list" mpType="2" mpTime="life" box_title_xlate="V0093" lower="y"/>   
+	    		<listItem xlate="V0095" label="Yearly leaders" type="leader_list" mpType="2" mpTime="year" lower="y"/>   
+			    <listItem xlate="V0096" label="Monthly leaders" type="leader_list" mpType="2" mpTime="month" lower="y"/>   			
+			<listItem label="Monthly Robot Race competition" type="urlpopup" url="http://online.bridgebase.com/races/rrbest.html?x=2" invisible="y"/>  
+		</list>				
+		<listItem xlate="V0097" label="Vugraph (live broadcasts)" type="component" component="tableman" location="wizard" right="y" />					
+		<listItem xlate="V0527" label="BB$ Account" type="buy_bbdollars" lower="y" allow_anon="n" commerce="y" box_title="My BBO"/>
+		<listItem xlate="C0011" label="Masterpoints" type="mypoints" lower="y" allow_anon="n"/>
+		<listItem xlate="V0060" label="User profile" type="component" component="profileman" location="popup" lower="y" allow_anon="n"/>			
+		<listItem xlate="V0061" label="Hands and results" type="component" component="myhands" location="wizard" lower="y" allow_anon="n"/>			
+		<listItem xlate="AH001" label="Convention cards" type="component" component="convcardman" location="popup" lower="y" allow_anon="n"/>
+		<listItem xlate="V0099" label="Learn more about BBO" type="urlpopup" url="http://online.bridgebase.com/v2/doc_more_about_bbo.html" allow_nonanon="n" allow_anon="y" lower="y"/>	  	  			
+   	</menu>
+</home>

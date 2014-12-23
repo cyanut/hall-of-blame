@@ -1,0 +1,21 @@
+<home>
+	<menu xlate="V0111" style="nopie" title="BBO Now Home">					
+		<listItem xlate="V0058" label="Tournaments starting soon" table="y" type="hmfag_tourney" id="tourneys"/>				
+		<listItem xlate="V0059" label="Interesting tables" type="table_list" interest="kibitz" id="interesting"/>	   
+		<list label="List all tables" xlate="V0513" stats="y" id="browse">
+			<listItem label="MSN Games Bridge Club" type="table_list" manager="zonemgr" full="n" affil="msn" stats="af"/>				
+			<listItem xlate="AC010" label="Main Bridge Club" type="table_list" manager="~bbo~mbc" full="n" stats="mbc" box_title="All tables" box_title_xlate="V0506"/>
+		    <listItem xlate="MA095" label="Relaxed Bridge Club" type="table_list" manager="bbo~si" full="n" stats="rbc"/>		 
+		    <list xlate="V0075" label="All Public and Private Clubs" stats="ac">		    		        
+		    	<listItem label="The WP Refugees' Bridge Club (public)" type="table_list" manager="mikefofva" full="n"/>
+		    	<listItem label="The Total Points Tournament Bridge Club (public)" type="table_list" manager="TotalPoint" full="n"/>		        
+		    	<listItem label="The Acol Bridge Club (public)" type="table_list" manager="aacol" full="n"/>		        
+		        <listItem xlate="V0076" label="All Public Clubs" type="club_list" clubs="public"/>
+				<listItem xlate="V0077" label="All Private Clubs" type="club_list" clubs="private"/>
+		    </list>									
+			<listItem xlate="AC013" label="Tournaments" type="all_tourneys" stats="tourn" table="y"/>						
+			<listItem xlate="AC014" label="Team Matches" stats="tm" type="tmatch_play"/>													
+		</list>
+		<listItem xlate="AF085" label="Vugraph" type="component" component="tableman" location="bbonow" id="vugraph"/>	
+   	</menu>
+</home>
