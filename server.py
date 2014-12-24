@@ -9,6 +9,7 @@ from multiprocessing import Process
 import pprint
 import json
 
+
 app = Flask(__name__)
 
 
@@ -69,11 +70,17 @@ def poll(n):
     res_buff.append(data)
     return format_data([data])
 
+gi = 0
 @app.route('/test/<int:n>')
 def test(n):
-    from test_data import game_res
-    print(format_data(game_res))
-    return format_data(game_res)
+    global gi
+    import time
+    from test_data import get_game_res
+    game_res = get_game_res()
+    gi += 1
+    gi = gi % 2
+    return format_data(game_res[gi:gi+2])
+
 
 @app.route('/dump')
 def dump():

@@ -39,8 +39,6 @@ def serve(remote_addr, port, q=None):
         '''
 
 def manage_conn(cli, srv, q):
-    #FIXME
-    f = open("/tmp/bridge1.rec","wb")
     live = True
     eat_response = None
     return_status = True
@@ -82,19 +80,11 @@ def manage_conn(cli, srv, q):
                     source = "S"
                 #print(symbol.encode("utf-8") + msg)
                 #print("-"*10)
-                f.write(msg + b"\x00")
-                f.flush()
                 if not (TEST and source=="C"):
                     target.send(msg + b"\x00")
                 if msg[:9] == b"<sc_board":
                     print(msg)
-                    '''
-                    f.write(msg)
-                    f.flush()
-                    '''
                 if q:
-                    #print(msg)
-                    #print("------")
                     if msg[:9] == b"<sc_board":
                         data_worker = Process(\
                                 target = process_game_packet, 

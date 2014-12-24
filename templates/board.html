@@ -1,5 +1,5 @@
-{% macro render_hand(label, hand) %}
-<p><b>N: {{label}}</b></p>
+{% macro render_hand(seat, label, hand) %}
+<p><b>{{seat}}: {{label}}</b></p>
     {% for h in hand %}
     <p><b>{{h[0]}}</b> {{h[1]}}
     {% endfor %}
@@ -25,78 +25,64 @@
             <p>IMP: </p>
         </td>
         <td>
-            {{ render_hand(deal.labelnorth, deal.all.N)}}
+            {{ render_hand("N", deal.labelnorth, deal.all.N)}}
         </td>
         <td>
-            <p><b>Par</b></p>
-            <p>
-                {% for par in analysis.par.contracts %}
-                {{par}} <br />
-                {% endfor %}
-                Par Score: {{analysis.par.score}}
-            </p>
         </td>
     </tr>
     <tr>
         <td>
-            {{ render_hand(deal.labelwest, deal.all.W)}}
+            {{ render_hand("W", deal.labelwest, deal.all.W)}}
         </td>
         <td>
             Board {{board_num}}
         </td>
         <td>
-            {{ render_hand(deal.labeleast, deal.all.E)}}
+            {{ render_hand("E", deal.labeleast, deal.all.E)}}
         </td>
     </tr>
     <tr>
         <td>
-            Bidding
-            <table>
-                <tr>
-                    {{ seat_row(seats) }}
-                </tr>
-                <tr>
-                {% for i in range(deal.dealer_num)%}
-                    <td></td>
-                {% endfor %}
-                {% for bid in bids %}
-                <td class="{% if bid.alert == "Y"%}bid_alert{%endif%} {% if bid.explain%}bid_explain{%endif%}" title='{{bid.explain}}'>{{bid.call}}</td>
-                {% if (loop.index + deal.dealer_num) % 4 == 0 %}
-                </tr>
-                <tr>
-                {% endif%}
-                {% endfor %}
-            </table>
         </td>
         <td>
-            {{ render_hand(deal.labelsouth, deal.all.S) }}
+            {{ render_hand("S", deal.labelsouth, deal.all.S) }}
         </td>
         <td>
-            trick matrix
-            <table>
-                <tr>
-                    <td></td>
-                    {% for suit in ["S","H","D","C","NT"] %}
-                    <td>{{suit}}</td>
-                    {% endfor %}
-                </tr>
-                {% for res in analysis.par.dd_table %}
-                <tr>
-                <td>{{res[0]}}</td>
-                {% for trick in res[1] %}
-                <td>{{trick}}</td>
-                {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
         </td>
     </tr>
 </table>
 </td>
 
 <td id="play_seq_{{board_num}}">
+    Bidding
     <table>
         <tr>
+            {{ seat_row(seats) }}
+        </tr>
+        <tr>
+        {% for i in range(deal.dealer_num)%}
+            <td></td>
+        {% endfor %}
+        {% for bid in bids %}
+        <td class="{% if bid.alert == "Y"%}bid_alert{%endif%} {% if bid.explain%}bid_explain{%endif%}" title='{{bid.explain}}'>{{bid.call}}</td>
+        {% if (loop.index + deal.dealer_num) % 4 == 0 %}
+        </tr>
+        <tr>
+        {% endif%}
+        {% endfor %}
+    </table>
+    <p>
+    Result: {{deal.result}}
+    {% if analysis.play_tricks %}
+    <br /> Tricks: {{analysis.play_tricks[-1]}}/{{analysis.play_tricks[0]}}
+    {% endif %}
+    </p>
+        
+    <table>
+        <tr>
+            {% for seat in seats %}
+            <td>{{seat}}</td>
+            {% endfor %}
         </tr>
         {% for round in analysis.play_anotated%}
         <tr>
@@ -110,12 +96,41 @@
     </table>
 </td>
 
+<td>
+    <p><b>Par</b></p>
+    <p>
+        {% for par in analysis.par.contracts %}
+        {{par}} <br />
+        {% endfor %}
+        Par Score: NS{{"{:+d}".format(analysis.par.score)}}
+    </p>
+    <p><b>Trick Matrix</b></p>
+    <table>
+        <tr>
+            <td></td>
+            {% for seat in seats %}
+            <td>{{seat}}</td>
+            {% endfor %}
+        </tr>
+        {% for res in analysis.par.dd_table[::-1] %}
+        <tr>
+        <td>{{res[0]}}</td>
+        {% for trick in res[1] %}
+        <td>{{trick}}</td>
+        {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</td>
+
+
 <td id="other_table_{{board_num}}">
     other tables
 </span>
 </td>
-    </tr>
-    </table>
+
+</tr>
+</table>
     
 </div>
 {% endwith %}

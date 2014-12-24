@@ -1,0 +1,9 @@
+<td id="other_table_{{board_num}}">
+    <table>
+        {% for res in result%}
+        <tr class="{% if res.table=="away"%}away_res{%endif%} {% if res.table=="home"%}home_res{%endif%}">
+            <td>{{res.result}}</td>
+            <td>NS: {{res.rawscorens}}, {{res.scorens}} IMP</td>
+        </tr>
+        {% endfor %}
+</td>
