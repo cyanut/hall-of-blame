@@ -1,12 +1,13 @@
 #!/usr/bin/python
-
+from __future__ import absolute_import, division, print_function, unicode_literals
 import socket
-from multiprocessing import Process
+#from multiprocessing import Process as Thread
+from threading import Thread
 from select import select
 from trainer import process_game_packet
 SRV_ADDR = "192.155.229.163"
 PORT = 3336
-TEST = True
+TEST = False
 
 
 
@@ -78,15 +79,12 @@ def manage_conn(cli, srv, q):
                     source = "C"
                 else:
                     source = "S"
-                #print(symbol.encode("utf-8") + msg)
-                #print("-"*10)
-                if not (TEST and source=="C"):
-                    target.send(msg + b"\x00")
-                if msg[:9] == b"<sc_board":
-                    print(msg)
+
+                print(source,"=>", msg)
+                target.send(msg + b"\x00")
                 if q:
                     if msg[:9] == b"<sc_board":
-                        data_worker = Process(\
+                        data_worker = Thread(\
                                 target = process_game_packet, 
                                 args = (msg, q))
                         data_worker.start()

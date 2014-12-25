@@ -1,4 +1,9 @@
-from pydds import dds
+from __future__ import absolute_import, division, print_function, unicode_literals
+
+try:
+    from pydds import dds
+except ImportError:
+    import dds
 import ctypes
 import re
 from xml.dom import minidom
@@ -57,7 +62,6 @@ def analyze_par(pbn_deal, dealer, vul):
         dd_table_flat += list(y)
     dd_table = []
     for i in range(12, -1, -4):
-        #dd_table.append(dd_table_flat[i::4])
         dd_table.append(dd_table_flat[i:i+4])
     dd_table.append(dd_table_flat[16:20])
     
@@ -73,7 +77,7 @@ def analyze_par(pbn_deal, dealer, vul):
         return None
     return {"dd_table" : list(zip(suit_list, dd_table)),
             "score":par_res.score, 
-            "contracts":[x.value.decode("utf-8") for x in par_res.contracts[:par_res.number]]}
+            "contracts":[x.value.decode("utf-8").replace("*","x") for x in par_res.contracts[:par_res.number]]}
 
 def analyze_play(pbn_deal, pbn_play, trump, lead_player, thread_id = 0):
     c_pbn_deal = fmt_deal(pbn_deal, trump, lead_player)
@@ -83,7 +87,8 @@ def analyze_play(pbn_deal, pbn_play, trump, lead_player, thread_id = 0):
     print(len(pbn_play))
     ret = dds.AnalysePlayPBN(c_pbn_deal, c_pbn_play, res_pointer, thread_id)
     if ret == 1:
-        return list(res.tricks)[:res.number]
+        tricks = list(res.tricks)[:res.number]  
+        return tricks + (len(pbn_play) % 2 - res.number) * [tricks[-1]]
     else:
         print(ret)
         return None
@@ -168,6 +173,7 @@ def format_board_res(packet_xml):
     contract = None
     side = None
     double = 0
+    # find out contract
     for i, bid in enumerate(bids[::-1]):
         if bid["call"] in ['d', 'r'] and not contract:
             double += 1
@@ -176,7 +182,7 @@ def format_board_res(packet_xml):
             side = i % 2
         if contract and i % 2 == side and len(bid["call"]) == len(contract) and bid["call"][1:] == contract[1:]:
             declarer = (len(bids) - i - 1) % 4 
-    if declarer and contract:
+    if declarer is not None and contract is not None:
         declarer = (declarer + hand_table[game_result["deal"]["dealer"]]) % 4
         game_result["deal"]["contract"] = contract
         game_result["deal"]["trump"] = contract[1:]
@@ -192,13 +198,12 @@ def format_board_res(packet_xml):
 
         #format play sequence
         play_tricks = game_result["analysis"]["play_tricks"]
-        play_diff = [x[1]-x[0] for x in zip(play_tricks[1:], play_tricks[:-1])]
-        play_diff = play_tricks[1:]
+        play_diff = [x[1]-x[0] for x in zip(play_tricks[:-1], play_tricks[1:])]
         play_cards = game_result["play"]["cards"].split(" ")
         play_owner = [hand_table[find_owner(game_result["deal"]["all"], x)] for x in play_cards]
         play_seq = []
         print(len(play_cards), len(play_owner), len(play_diff), len(play_tricks))
-        input()
+        #input()
         for i in range(0, len(play_cards), 4):
             play_seq.append(sorted(list(zip(play_cards[i:i+4], 
                                      play_owner[i:i+4],
@@ -208,9 +213,9 @@ def format_board_res(packet_xml):
 
         #parse result
         result = [game_result["deal"]["contract"]]
+        result.append(game_result["deal"]["declarer"])
         for i in range(double):
             result.append("x")
-        result += ["-", game_result["deal"]["declarer"]]
         tricks = play_tricks[-1]
         target_tricks = int(game_result["deal"]["contract"][0]) + 6
         over_trick = tricks - target_tricks
@@ -249,7 +254,7 @@ def format_table_res(packet_xml):
 
 def process_game_packet(packet, q):
     import pprint
-    print(packet)
+    #print(packet)
     packet = packet.strip(b"\x00")
 
     try:

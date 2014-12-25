@@ -10,3 +10,14 @@
 .lead_card {
     text-decoration: underline;
 }
+
+.play_table td sub {
+    display: None;
+}
+
+.bad_card {
+    background-color: #dd2200;
+}
+.bad_card sub {
+    display: inline !important;
+}

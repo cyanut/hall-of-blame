@@ -1,16 +1,23 @@
-#from gevent import monkey; monkey.patch_all()
-#from gevent.queue import Queue
-from multiprocessing import Queue
+from __future__ import absolute_import, division, print_function, unicode_literals
 
-from flask import Flask, render_template
-from proxy import proxy, proxy_request, request
+from gevent import monkey; monkey.patch_all()
+from gevent.queue import Queue
+#from multiprocessing import Queue
+#from multiprocessing import Process as Thread
+#from queue import Queue
+from threading import Thread
+
+from flask import Flask, request, render_template, abort
+from flask.ext.socketio import SocketIO, emit
+#from proxy import proxy, proxy_request, request
 from listener import serve
-from multiprocessing import Process
 import pprint
 import json
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hahaha'
+socketio = SocketIO(app)
 
 
 SRV_ADDR="192.155.229.163"
@@ -20,16 +27,17 @@ listener = None
 res_buff = []
 
 
-@app.route('/')
+@app.route('/bbo')
 def main_page():
     global q
     global listener
     if listener is None or not listener.is_alive():
-        listener = Process(target=serve, args=(SRV_ADDR, PORT, q))
+        listener = Thread(target=serve, args=(SRV_ADDR, PORT, q))
+        listener.daemon = True
         listener.start()
     return render_template('base.html', address="127.0.0.1", port=PORT)
 
-@app.route('/grievances')
+@app.route('/')
 def result():
     msg = ""
     if listener is None or not listener.is_alive():
@@ -50,12 +58,22 @@ def format_data(data):
     return json.dumps(res)
 
 
-@app.route('/poll/<int:n>')
-def poll(n):
+@app.route('/poll', methods=["GET", "POST"])
+def poll():
     global q
     res = []
+    board_list = request.form.get('boards', None)
+    if board_list is None:
+        abort(400)
+    try:
+        board_list = json.loads(board_list)
+    except:
+        abort(400)
+    print(board_list)
+    board_list = set(board_list)
+
     for data in res_buff:
-        if data['board_num'] > n:
+        if not data['board_num'] in board_list:
             res.append(data)
 
     while not q.empty():

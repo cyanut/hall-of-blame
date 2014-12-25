@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title%} Hall of Blame {% endblock %}
 {% block body%}
 
 <div id="updated">updated</div>
@@ -7,7 +8,6 @@
 
 <script>
     $(document).ready(function(){
-        $("div#updated").fadeOut(0);
         $("div#waiting").fadeIn(500);
         wait_for_update();
     });

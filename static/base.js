@@ -1,28 +1,28 @@
 var waiting_for_update = false, 
-    LONG_POLL_DURATION = 10000,
+    LONG_POLL_DURATION = 5000,
     last_board_num = 0,
     boards = []; 
     
+var request_success = false;
 
 
 function wait_for_update() {
 
     if (!waiting_for_update) {
         waiting_for_update = true;
-        $.ajax({ url: '/test/'+last_board_num,
-                 success: function(msg){
-                            display_data(msg), 
-                            setTimeout(wait_for_update, 5000);
-                 },
-                 complete: function () {
-                    waiting_for_update = false;
-                    setTimeout(wait_for_update, 5000); 
-                 },
-                 timeout:  LONG_POLL_DURATION,
-                 error: function () {
-                     setTimeout(wait_for_update, 30000);
-                 },
-               });
+        $.ajax({ url: '/poll',
+                 type: 'POST',
+                 data: {'boards':JSON.stringify(boards)}
+        }).done(function(msg){
+                display_data(msg); 
+                request_success = true;
+                waiting_for_update = false;
+                setTimeout(wait_for_update, 500);
+        }).fail(function(msg){
+                request_success = false;
+                waiting_for_update = false;
+                setTimeout(wait_for_update, 5000);
+        });
     }
 }
 
@@ -59,8 +59,8 @@ function display_data(data_list_raw) {
             }
         }
         
-        $("#updated").fadeIn('fast');
-        setTimeout(function() {  $("#updated").fadeOut('slow');  }, 2500);
+        //$("#updated").fadeIn('fast');
+        //setTimeout(function() {  $("#updated").fadeOut('slow');  }, 2500);
     }
 }
 

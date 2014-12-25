@@ -19,10 +19,6 @@
 <table>
     <tr>
         <td>
-            <p>Vul: {{deal.vul}}</p>
-            <p>Result: {{board.result}}</p>
-            <p>Score: {{board.scorens}}</p>
-            <p>IMP: </p>
         </td>
         <td>
             {{ render_hand("N", deal.labelnorth, deal.all.N)}}
@@ -54,6 +50,7 @@
 </td>
 
 <td id="play_seq_{{board_num}}">
+    Vul: {{deal.vul_parsed}} <br />
     Bidding
     <table>
         <tr>
@@ -74,20 +71,20 @@
     <p>
     Result: {{deal.result}}
     {% if analysis.play_tricks %}
-    <br /> Tricks: {{analysis.play_tricks[-1]}}/{{analysis.play_tricks[0]}}
+    <br /> Tricks: {{deal.declarer}} {{analysis.play_tricks[-1]}}/{{analysis.play_tricks[0]}}
     {% endif %}
     </p>
         
-    <table>
+    <table class="play_table">
         <tr>
             {% for seat in seats %}
-            <td>{{seat}}</td>
+            <td><b>{{seat}}</b></td>
             {% endfor %}
         </tr>
         {% for round in analysis.play_anotated%}
         <tr>
             {% for card in round %}
-            <td class="{%if card[3]%}lead_card{%endif%}{%if card[2]>0%} good_card{%endif%}{%if card[2]>0%} bad_card{%endif%}">
+            <td class="{%if card[3]%}lead_card{%endif%} {%if card[2] != 0%}bad_card{%endif%}">
                     {{card[0]}}<sub>{{"{:+d}".format(card[2])}}</sub>
             </td>
             {% endfor %}
@@ -109,12 +106,12 @@
         <tr>
             <td></td>
             {% for seat in seats %}
-            <td>{{seat}}</td>
+            <td><b>{{seat}}</b></td>
             {% endfor %}
         </tr>
         {% for res in analysis.par.dd_table[::-1] %}
         <tr>
-        <td>{{res[0]}}</td>
+            <td><b>{{res[0]}}</b></td>
         {% for trick in res[1] %}
         <td>{{trick}}</td>
         {% endfor %}
@@ -125,7 +122,6 @@
 
 
 <td id="other_table_{{board_num}}">
-    other tables
 </span>
 </td>
 
