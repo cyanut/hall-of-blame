@@ -1,11 +1,13 @@
 var waiting_for_update = false, 
     LONG_POLL_DURATION = 5000,
     last_board_num = 0,
+    results = [],
     boards = []; 
+    
     
 var request_success = false;
 
-
+/*
 function wait_for_update() {
 
     if (!waiting_for_update) {
@@ -25,19 +27,23 @@ function wait_for_update() {
         });
     }
 }
+*/
 
 function display_data(data_list_raw) {
     var i;
     var data_list = JSON.parse(data_list_raw);
     var data;
+    var exists;
     for (i=0; i<data_list.length; i++){
         data = data_list[i];
         if ($.inArray(data.board_num, boards) === -1){
             console.log("new");
-            boards.push(data.board_num);
-            if (last_board_num < data.board_num){
-                last_board_num = data.board_num;
+            if (data.type === "this_table"){
+                boards.push(data.board_num);
+            } else if (data.type === "other_tables"){
+                results.push(data.board_num);
             }
+
             $('div#contents').append(data.content);
         } else {
             objs = $(data.content);

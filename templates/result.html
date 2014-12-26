@@ -8,8 +8,9 @@
 
 <script>
     $(document).ready(function(){
-        $("div#waiting").fadeIn(500);
-        wait_for_update();
+        console.log(document.domain +":"+location.port);
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/poll');
+        socket.on('data', display_data);
     });
 </script>
 {% endblock %}

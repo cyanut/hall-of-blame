@@ -17,6 +17,7 @@ import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hahaha'
+#app.config['SERVER_NAME'] = 'my.cyansite.cc'
 socketio = SocketIO(app)
 
 
@@ -24,8 +25,12 @@ SRV_ADDR="192.155.229.163"
 PORT = 3336
 q = Queue()
 listener = None
+updater = None
 res_buff = []
 
+
+def jinja_render_template(template, **context):
+    return app.jinja_env.get_or_select_template(template).render(context)
 
 @app.route('/bbo')
 def main_page():
@@ -35,6 +40,9 @@ def main_page():
         listener = Thread(target=serve, args=(SRV_ADDR, PORT, q))
         listener.daemon = True
         listener.start()
+        updater = Thread(target=get_data, args=())
+        updater.daemon = True
+        updater.start()
     return render_template('base.html', address="127.0.0.1", port=PORT)
 
 @app.route('/')
@@ -49,16 +57,28 @@ def format_data(data):
     res = []
     for d in data:
         if d["type"] == "this_table":
-            s = render_template('board.html', **d)
+            s = jinja_render_template('board.html', **d)
         elif d["type"] == "other_tables":
-            s = render_template('other_tables.html', **d)
+            s = jinja_render_template('other_tables.html', **d)
         #json doesn't like new lines
         s = s.replace("\n","")
-        res.append({"board_num":d["board_num"], "content":s})
+        res.append({"board_num":d["board_num"], "type":d["type"], "content":s})
     return json.dumps(res)
 
+def get_data():
+    while listener is None or listener.is_alive():
+        data = q.get(block=True)
+        res_buff.append(data)
+        socketio.emit("data", format_data([data]), namespace='/poll')
 
-@app.route('/poll', methods=["GET", "POST"])
+@socketio.on('connect', namespace='/poll')
+def connect():
+    print("hihi")
+    emit("data", format_data(res_buff))
+
+
+
+#@app.route('/poll', methods=["GET", "POST"])
 def poll():
     global q
     res = []
@@ -123,15 +143,4 @@ def bbo_static(fname, ftype):
 
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) > 1:
-        app.run(debug=True, port=8001, threaded=True)
-    else:
-        from gevent.wsgi import WSGIServer
-        http_server = WSGIServer(("", 8001), app)
-        http_server.serve_forever()
-    
-
-            
-
-
-
+    socketio.run(app, host="", port=8001)
