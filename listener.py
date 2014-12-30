@@ -44,6 +44,7 @@ def manage_conn(cli, srv, q):
     eat_response = None
     return_status = True
     msg_buff = b""
+    uname = None
     while live:
         rl, wl, el = select([cli, srv], [], [])
         for rs in rl:
@@ -80,10 +81,21 @@ def manage_conn(cli, srv, q):
                 else:
                     source = "S"
 
-                print(source,"=>", msg)
+                #print(source,"=>", repr(msg))
                 target.send(msg + b"\x00")
                 if q:
-                    if msg[:9] == b"<sc_board":
+                    #login info
+                    if msg.startswith(b"<sc_loginok"):
+                        ind_uname = msg.find('user="') + 6
+                        if ind_uname < 0:
+                            continue
+                        end_uname = msg[ind_uname:].index('"')
+                        if end_uname < 0:
+                            continue
+                        uname = msg[ind_uname: ind_uname + end_uname]
+                        print("selecting user name", uname)
+
+                    if msg.startswith(b"<sc_board") and uname in msg:
                         data_worker = Thread(\
                                 target = process_game_packet, 
                                 args = (msg, q))

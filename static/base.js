@@ -41,7 +41,8 @@ function display_data(data_list_raw) {
             if (data.type === "this_table"){
                 boards.push(data.board_num);
             } else if (data.type === "other_tables"){
-                results.push(data.board_num);
+                //no stand alone result
+                continue;
             }
 
             $('div#contents').append(data.content);
