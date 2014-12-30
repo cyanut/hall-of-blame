@@ -29,45 +29,41 @@ function wait_for_update() {
 }
 */
 
-function display_data(data_list_raw) {
+function display_data(data_raw) {
     var i;
-    var data_list = JSON.parse(data_list_raw);
-    var data;
+    var data = JSON.parse(data_raw);
     var exists;
-    for (i=0; i<data_list.length; i++){
-        data = data_list[i];
-        if ($.inArray(data.board_num, boards) === -1){
-            console.log("new");
-            if (data.type === "this_table"){
-                boards.push(data.board_num);
-            } else if (data.type === "other_tables"){
-                //no stand alone result
-                continue;
-            }
+    if ($.inArray(data.board_num, boards) === -1){
+        console.log("new");
+        if (data.type === "this_table"){
+            boards.push(data.board_num);
+        } else if (data.type === "other_tables"){
+            //no stand alone result
+            return;
+        }
 
-            $('div#contents').append(data.content);
-        } else {
-            objs = $(data.content);
-            console.log("replace", objs.length);
-            for (var i=0; i<objs.length; i++){
-                if (objs[i].nodeType != 1) continue;
-                
-                if (objs[i].tagName.toLowerCase() == 'script'){
-                    //run additional scripts
-                    eval(obj[i].text);
-                } else {
-                    //update elements
-                    target = $('#'+objs[i].id);
-                    if (target.length > 0){
-                        target = target[0];
-                        target.outerHTML = objs[i].outerHTML;
-                    }
+        $('div#contents').append(data.content);
+    } else {
+        objs = $(data.content);
+        console.log("replace", objs.length);
+        for (var i=0; i<objs.length; i++){
+            if (objs[i].nodeType != 1) continue;
+            
+            if (objs[i].tagName.toLowerCase() == 'script'){
+                //run additional scripts
+                eval(obj[i].text);
+            } else {
+                //update elements
+                target = $('#'+objs[i].id);
+                if (target.length > 0){
+                    target = target[0];
+                    target.outerHTML = objs[i].outerHTML;
                 }
             }
         }
+    }
         
         //$("#updated").fadeIn('fast');
         //setTimeout(function() {  $("#updated").fadeOut('slow');  }, 2500);
-    }
 }
 

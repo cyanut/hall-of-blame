@@ -13,6 +13,7 @@ from flask.ext.socketio import SocketIO, emit
 from listener import serve
 import pprint
 import json
+import time
 
 
 app = Flask(__name__)
@@ -54,27 +55,27 @@ def result():
 
 
 def format_data(data):
-    res = []
-    for d in data:
-        if d["type"] == "this_table":
-            s = jinja_render_template('board.html', **d)
-        elif d["type"] == "other_tables":
-            s = jinja_render_template('other_tables.html', **d)
-        #json doesn't like new lines
-        s = s.replace("\n","")
-        res.append({"board_num":d["board_num"], "type":d["type"], "content":s})
-    return json.dumps(res)
+    d = data
+    if d["type"] == "this_table":
+        s = jinja_render_template('board.html', **d)
+    elif d["type"] == "other_tables":
+        s = jinja_render_template('other_tables.html', **d)
+    #json doesn't like new lines
+    s = s.replace("\n","")
+    return json.dumps({"board_num":d["board_num"], "type":d["type"], "content":s})
 
 def get_data():
     while listener is None or listener.is_alive():
         data = q.get(block=True)
         res_buff.append(data)
-        socketio.emit("data", format_data([data]), namespace='/poll')
+        socketio.emit("data", format_data(data), namespace='/poll')
 
 @socketio.on('connect', namespace='/poll')
 def connect():
     print("hihi")
-    emit("data", format_data(res_buff))
+    for data in res_buff:
+        emit("data", format_data(data))
+        time.sleep(0.1)
 
 
 

@@ -1,7 +1,7 @@
-{% macro render_hand(seat, label, hand) %}
+{% macro render_hand(seat, label, hand, board_num) %}
 <p><b>{{seat}}: {{label}}</b></p>
     {% for h in hand %}
-    <p><b>{{h[0]}}</b> {{h[1]}}
+    <p><b>{{h[0]}}</b> {% for c in h[1]%}<span id="deal_{{board_num}}_{{h[0]}}{{h[1]}}" class="unplayed_hand">{{c}}</span>{% endfor %}
     {% endfor %}
 {% endmacro %}
 
@@ -21,27 +21,27 @@
         <td>
         </td>
         <td>
-            {{ render_hand("N", deal.labelnorth, deal.all.N)}}
+            {{ render_hand("N", deal.labelnorth, deal.all.N, board_num)}}
         </td>
         <td>
         </td>
     </tr>
     <tr>
         <td>
-            {{ render_hand("W", deal.labelwest, deal.all.W)}}
+            {{ render_hand("W", deal.labelwest, deal.all.W, board_num)}}
         </td>
         <td>
             Board {{board_num}}
         </td>
         <td>
-            {{ render_hand("E", deal.labeleast, deal.all.E)}}
+            {{ render_hand("E", deal.labeleast, deal.all.E, board_num)}}
         </td>
     </tr>
     <tr>
         <td>
         </td>
         <td>
-            {{ render_hand("S", deal.labelsouth, deal.all.S) }}
+            {{ render_hand("S", deal.labelsouth, deal.all.S, board_num)}}
         </td>
         <td>
         </td>
@@ -84,7 +84,7 @@
         {% for round in analysis.play_anotated%}
         <tr>
             {% for card in round %}
-            <td class="{%if card[3]%}lead_card{%endif%} {%if card[2] != 0%}bad_card{%endif%}">
+            <td class="{%if card[3]%}lead_card{%endif%} {%if card[2] != 0%}bad_card{%endif%} play_seq_card unplayed_card">
                     {{card[0]}}<sub>{{"{:+d}".format(card[2])}}</sub>
             </td>
             {% endfor %}
@@ -130,3 +130,9 @@
     
 </div>
 {% endwith %}
+
+<script>
+    $('#board_{{board_num}} .play_seq_card').onclick(function(){
+        console.log(this);
+    });
+</script>
