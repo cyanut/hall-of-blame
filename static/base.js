@@ -1,7 +1,7 @@
 var waiting_for_update = false, 
     LONG_POLL_DURATION = 5000,
     last_board_num = 0,
-    results = [],
+    results = {},
     boards = []; 
     
     
@@ -34,18 +34,22 @@ function display_data(data_raw) {
     var data = JSON.parse(data_raw);
     var exists;
     if ($.inArray(data.board_num, boards) === -1){
-        console.log("new");
         if (data.type === "this_table"){
             boards.push(data.board_num);
+            $('div#contents').append(data.content);
+            if (data.board_num in results){
+                display_data(results[data.board_num]);
+                delete results[data.board_num];
+            }
+
         } else if (data.type === "other_tables"){
-            //no stand alone result
+            //queue stand alone result, waiting for table to come
+            results[data.board_num] = data;
             return;
         }
-
-        $('div#contents').append(data.content);
+       
     } else {
         objs = $(data.content);
-        console.log("replace", objs.length);
         for (var i=0; i<objs.length; i++){
             if (objs[i].nodeType != 1) continue;
             
