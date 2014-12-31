@@ -51,7 +51,7 @@ function display_data(data_raw) {
             
             if (objs[i].tagName.toLowerCase() == 'script'){
                 //run additional scripts
-                eval(obj[i].text);
+                eval(objs[i].text);
             } else {
                 //update elements
                 target = $('#'+objs[i].id);

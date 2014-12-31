@@ -25,9 +25,13 @@ socketio = SocketIO(app)
 SRV_ADDR="192.155.229.163"
 PORT = 3336
 q = Queue()
+
 listener = None
 updater = None
 res_buff = []
+#FIXME
+import test_data
+res_buff = test_data.game_res
 
 
 def jinja_render_template(template, **context):

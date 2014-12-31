@@ -21,3 +21,26 @@
 .bad_card sub {
     display: inline !important;
 }
+
+.played_card {
+    color: #aaa;
+    display: None;
+}
+
+.playing_card.lead_card{
+    background-color: #002eff;
+    border: 2px black;
+}
+
+.playing_card {
+    background-color: #7891ff;
+}
+
+.playing_card.bad_card{
+    background-color: #dd2200;
+}
+
+.play_seq .played_card{
+    display: table-cell;
+}
+

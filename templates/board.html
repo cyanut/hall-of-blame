@@ -1,7 +1,7 @@
 {% macro render_hand(seat, label, hand, board_num) %}
 <p><b>{{seat}}: {{label}}</b></p>
     {% for h in hand %}
-    <p><b>{{h[0]}}</b> {% for c in h[1]%}<span id="deal_{{board_num}}_{{h[0]}}{{h[1]}}" class="unplayed_hand">{{c}}</span>{% endfor %}
+    <p><b>{{h[0]}}</b> {% for c in h[1]%}<span id="deal_{{board_num}}_{{h[0]}}{{c}}" >{{c}}</span>{% endfor %}
     {% endfor %}
 {% endmacro %}
 
@@ -49,7 +49,7 @@
 </table>
 </td>
 
-<td id="play_seq_{{board_num}}">
+<td id="play_seq_{{board_num}}" class="play_seq">
     Vul: {{deal.vul_parsed}} <br />
     Bidding
     <table>
@@ -84,8 +84,8 @@
         {% for round in analysis.play_anotated%}
         <tr>
             {% for card in round %}
-            <td class="{%if card[3]%}lead_card{%endif%} {%if card[2] != 0%}bad_card{%endif%} play_seq_card unplayed_card">
-                    {{card[0]}}<sub>{{"{:+d}".format(card[2])}}</sub>
+            <td class=" {%if card[3]%}lead_card{%endif%} {%if card[2] != 0%}bad_card{%endif%} play_seq_card unplayed_card">
+                <span>{{card[0]}}</span><sub>{{"{:+d}".format(card[2])}}</sub>
             </td>
             {% endfor %}
         </tr>
@@ -132,7 +132,46 @@
 {% endwith %}
 
 <script>
-    $('#board_{{board_num}} .play_seq_card').onclick(function(){
-        console.log(this);
+    var selector = '#board_{{board_num}} .play_seq_card';
+    $(selector).click(function(){
+        var all_card = $(selector);
+        var card_num = -1;
+        for (var i=0; i<all_card.length; i++){
+            if (all_card[i] === this){
+                card_num = i;
+                console.log("found card num", card_num);
+            };
+        };
+        if (card_num < 0) return;
+
+        played_card_num = (Math.floor(card_num / 4)) * 4;
+        
+        for (var i=0; i<all_card.length; i++){
+            card_name = $(all_card[i]).children("span").text();
+            card_obj = $('#deal_{{board_num}}_'+card_name);
+            if (i < played_card_num){
+                card_obj.switchClass("lead_card bad_card playing_card", "played_card");
+            } else if (played_card_num <= i && i < played_card_num + 4){
+                card_obj.switchClass("lead_card bad_card played_card", "playing_card");
+                console.log(all_card[i]);
+                if ($(all_card[i]).hasClass("lead_card")){
+                    console.log(all_card[i], "lead");
+                    card_obj.addClass("lead_card", 400);
+                }
+                if ($(all_card[i]).hasClass("bad_card")){
+                    console.log(all_card[i], "bad");
+                    card_obj.addClass("bad_card", 400);
+                }
+            } else if (played_card_num + 4<= i){
+                card_obj.removeClass("lead_card bad_card played_card playing_card");
+            };
+            if (i < card_num){
+                $(all_card[i]).addClass("played_card");
+            } else {
+                $(all_card[i]).removeClass("played_card");
+            }
+
+
+        };
     });
 </script>
