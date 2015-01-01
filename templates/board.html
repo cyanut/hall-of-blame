@@ -12,7 +12,7 @@
 {% endmacro %}
 
 {% with seats = "NESW" %}
-<div id='board_{{board_num}}'>
+<div id='board_{{board_num}}' class='board'>
     <table>
         <tr>
 <td class='deal' id="deal_{{board_num}}">
@@ -49,7 +49,7 @@
 </table>
 </td>
 
-<td id="play_seq_{{board_num}}" class="play_seq">
+<td id="play_seq_{{board_num}}" class="play_seq column">
     Vul: {{deal.vul_parsed}} <br />
     Bidding
     <table>
@@ -93,7 +93,7 @@
     </table>
 </td>
 
-<td>
+<td class='analysis column'>
     <p><b>Par</b></p>
     <p>
         {% for par in analysis.par.contracts %}
@@ -121,7 +121,7 @@
 </td>
 
 
-<td id="other_table_{{board_num}}" class="other_table">
+<td id="other_table_{{board_num}}" class="other_table column">
 </span>
 </td>
 

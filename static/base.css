@@ -28,8 +28,9 @@
 }
 
 .playing_card.lead_card{
-    background-color: #002eff;
-    border: 2px black;
+    /*background-color: #00b1ab;*/
+    border: 2px solid black;
+    text-decoration: none;
 }
 
 .playing_card {
@@ -37,10 +38,26 @@
 }
 
 .playing_card.bad_card{
-    background-color: #dd2200;
+    background-color: #e22000;
 }
 
 .play_seq .played_card{
     display: table-cell;
 }
 
+.column{
+    text-align: center;
+}
+
+.column table{
+    width: 100%;
+}
+
+
+.deal,.column{
+    padding-right: 50px;
+}
+
+.column table {
+    text-align: center;
+}
