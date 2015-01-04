@@ -10,8 +10,7 @@
 </head>
 <body>
 {% block body %}
-
-template test @ {{ address }}:{{port}} {% for a in "abc"%}{{a}}{{a}}{%endfor%}
+<div id='msg'>connecting to {{address}} @ {{ port }} ... </div>
 <embed src="static/bbo/BBOMainLine.swf" quality="high" wmode="transparent" bgcolor="#869ca7" name="BBOMainLine" allowscriptaccess="sameDomain" pluginspage="http://www.adobe.com/go/getflashplayer" flashvars="s={{address}}&port={{port}}&altport=80&vugraphonly=n&language=en" type="application/x-shockwave-flash" align="middle" height="100%" width="100%">
 
 {% endblock %}

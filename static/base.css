@@ -61,3 +61,7 @@
 .column table {
     text-align: center;
 }
+.board {
+    margin-top:25px;
+    margin-bottom: 25px;
+}

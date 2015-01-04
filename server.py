@@ -10,7 +10,7 @@ from threading import Thread
 from flask import Flask, request, render_template, abort
 from flask.ext.socketio import SocketIO, emit
 #from proxy import proxy, proxy_request, request
-from listener import serve
+from listener import Listener
 import pprint
 import json
 import time
@@ -37,23 +37,34 @@ res_buff = test_data.game_res
 def jinja_render_template(template, **context):
     return app.jinja_env.get_or_select_template(template).render(context)
 
-@app.route('/bbo')
-def main_page():
+@socketio.on('connect', namespace="/host")
+def host_start():
     global q
     global listener
-    if listener is None or not listener.is_alive():
-        listener = Thread(target=serve, args=(SRV_ADDR, PORT, q))
-        listener.daemon = True
-        listener.start()
+    listener = Listener(SRV_ADDR, PORT, PORT, q)
+    if not listener.running:
+        t = Thread(target=listener.serve)
+        t.daemon = True
+        t.start()
         updater = Thread(target=get_data, args=())
         updater.daemon = True
         updater.start()
-    return render_template('base.html', address="127.0.0.1", port=PORT)
+    emit("data", "proxy server initiated.")
+
+@socketio.on('disconnect', namespace="/host")
+def host_stop():
+    global listener
+    listener.stop()
+    
+
+@app.route('/bbo')
+def main_page():
+    return render_template('bbo.html', address="127.0.0.1", port=PORT)
 
 @app.route('/')
 def result():
     msg = ""
-    if listener is None or not listener.is_alive():
+    if listener is None or not listener.running:
         msg = "waiting for connection ..."
     return render_template('result.html', msg=msg)
 
@@ -69,7 +80,8 @@ def format_data(data):
     return json.dumps({"board_num":d["board_num"], "type":d["type"], "content":s})
 
 def get_data():
-    while listener is None or listener.is_alive():
+    global listener
+    while listener is None or listener.running:
         data = q.get(block=True)
         res_buff.append(data)
         socketio.emit("data", format_data(data), namespace='/poll')

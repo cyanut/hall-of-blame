@@ -10,34 +10,62 @@ PORT = 3336
 TEST = False
 
 
+class Listener(object):
 
 
-def serve(remote_addr, port, q=None):
-    skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    skt.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    skt.bind(("", port))
-    skt.listen(1)
+    def __init__(self, remote_addr, local_port, remote_port, q=None):
+        self.remote_addr = remote_addr
+        self.remote_port = remote_port
+        self.local_port = local_port
+        self.running = False
+        self.q = q
+        self.listening_socket = None
+        self.local_connection = None
+        self.remote_connection = None
 
-    print("Server listening @ " + str(port) + " ...")
-
-    #it seems the client connect twice: one for cross-domain policy, one 
-    # for real
-    success_conn = False
-    while not success_conn:
-        conn, addr = skt.accept()
-        print(repr(addr) + " connected " + str(port) + " !")
-        srv_skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        srv_skt.connect((remote_addr, port))
-        print(repr(srv_skt.getsockname()) + "connected to " + repr((remote_addr, port)))
-        conn.setblocking(1)
-        srv_skt.setblocking(1)
-        success_conn = manage_conn(conn, srv_skt, q)
+    def serve(self):
+        self.running = True
         
-        '''
-        work_thread = threading.Thread(target=manage_conn, \
-                                    args=(conn, srv_skt, q))
-        work_thread.start()
-        '''
+        local_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        local_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        local_socket.bind(("", self.local_port))
+        local_socket.listen(1)
+        self.listening_socket = local_socket
+
+
+        print("Server listening @ {} ...".format(self.local_port))
+
+        #it seems the client connect twice: one for cross-domain policy, one 
+        # for real
+        while self.running:
+            conn, addr = local_socket.accept()
+            self.local_connection = conn
+            print("{} connected {} !".format(addr, self.local_port))
+            self.remote_connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.remote_connection.connect((self.remote_addr, self.remote_port))
+            print("{} connected to {}".format(self.remote_connection.getsockname(), (self.remote_addr, self.remote_port)))
+            self.remote_connection.setblocking(1)
+            self.remote_connection.setblocking(1)
+            success_conn = manage_conn(self.local_connection, self.remote_connection, self.q)
+            
+            '''
+            work_thread = threading.Thread(target=manage_conn, \
+                                        args=(conn, srv_local_socket, q))
+            work_thread.start()
+            '''
+
+    def stop(self):
+        self.running = False
+        print("sockets:", self.listening_socket, self.local_connection, self.remote_connection)
+        if self.listening_socket:
+            self.listening_socket.close()
+        if self.local_connection:
+            self.local_connection.close()
+        if self.remote_connection:
+            self.remote_connection.close()
+
+
+
 
 def manage_conn(cli, srv, q):
     live = True
@@ -106,6 +134,7 @@ def manage_conn(cli, srv, q):
 
 
 if __name__ == "__main__":
-    serve(SRV_ADDR, PORT)
+    listener = Listener(SRV_ADDR, PORT, PORT)
+    listener.serve()
     
 
