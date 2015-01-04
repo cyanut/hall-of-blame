@@ -4,6 +4,7 @@ var waiting_for_update = false,
     results = {},
     boards = []; 
     
+var correct_cards = {}
     
 var request_success = false;
 

@@ -15,6 +15,7 @@ vul_table  = {"o":0, "b": 1, "n": 2, "e":3}
 side_table = {"NS":0, "EW":1}
 rank_table = {"A":14, "K":13, "Q":12, "J":11, "T":10, 
               "9":9, "8":8, "7":7, "6":6, "5":5, "4":4, "3":3, "2":2}
+reverse_rank_table = {v: k for k, v in rank_table.items()}
 
 seat_table = ["N", "E", "S", "W"]
 suit_list = ["C", "D", "H", "S", "NT"]
@@ -39,14 +40,86 @@ def fmt_play_trace(pbn_play):
     play = dds.playTracePBN(n, c_pbn_play)
     return play
 
-def fmt_deal(pbn_deal, trump, lead_player, current_tricks=None):
+def fmt_deal(pbn_deal, trump, lead_player, current_tricks=[]):
     pbn_deal = pbn_deal.strip().encode("utf-8")
     trump = suit_table[trump]
     lead_player = hand_table[lead_player]
-    t = (ctypes.c_int * 3)(*([0] * 3))
-    #TODO: parse current_tricks
-    deal = dds.dealPBN(trump, lead_player, t, t, pbn_deal)
+    suit_array = (ctypes.c_int * 3)(*([0] * 3))
+    trick_array = (ctypes.c_int * 3)(*([0] * 3))
+    for i, card in enumerate(current_tricks):
+        if i >= 3:
+            return;
+        else:
+            suit_array[i] = suit_table[card[0]]
+            trick_array[i] = rank_table[card[1]]
+
+    deal = dds.dealPBN(trump, lead_player, suit_array, trick_array, pbn_deal)
     return deal
+
+def format_future_tricks(future_tricks):
+    card = []
+    for i in range(future_tricks.cards):
+        suit = suit_list[3-future_tricks.suit[i]]
+        score = future_tricks.score[i]
+        rank = [future_tricks.rank[i]]
+        equal = future_tricks.equals[i] >> 2
+        i = 2
+        while equal > 0:
+            if equal % 2 == 1:
+                rank.append(i)
+            i += 1
+            equal >>= 1
+        for r in rank:
+            card.append([suit + reverse_rank_table[r],  score])
+    return card
+
+
+def get_correct_play(deal, trump, play_seq, seat_seq, error_seq):
+    #deal = dictionary in the format of, e.g., {"N":{"H": "AKT93",...}
+    working_deal = {seat: {suit: list(cards) for suit, cards in v} for seat,v in deal.items()} #deep copy, convert deal string to list
+    p = 0
+    deal_pbn_list = []
+    bad_cards = []
+    bad_card_owners = []
+    for pos in range(len(error_seq)):
+        if error_seq[pos] != 0:
+            leader = seat_table[seat_seq[pos // 4 * 4]]
+            current_tricks = play_seq[pos // 4 * 4: pos] #the rest are on the table now
+            for p1 in range(p, pos):
+                card = play_seq[p1]
+                for hand, deal in working_deal.items():
+                    try:
+                        deal[card[0]].remove(card[1])
+                    except ValueError:
+                        continue
+                    break
+            p = pos
+            hand_pbn = []
+            for seat in seat_table:
+                suit = ".".join(["".join(working_deal[seat][s]) for s in suit_list[3::-1]])
+                hand_pbn.append(suit)
+            pbn = "".join(["N:", " ".join(hand_pbn)])
+            print(pbn, play_seq[pos], seat_seq[pos])
+            deal_pbn_list.append(fmt_deal(pbn, trump, leader, current_tricks))
+            bad_cards.append(play_seq[pos])
+            bad_card_owners.append(seat_seq[pos])
+
+    n_boards = dds.MAXNOOFBOARDS
+    deal_pbn = (dds.dealPBN * n_boards)(*deal_pbn_list)
+    target = (ctypes.c_int*n_boards)(*([-1] * n_boards))
+    solutions = (ctypes.c_int*n_boards)(*([3] * n_boards))
+    mode = (ctypes.c_int*n_boards)(*([0] * n_boards))
+    n_boards = len(deal_pbn_list)
+    boards_pbn = dds.boardsPBN(n_boards, deal_pbn, target, solutions, mode)
+
+    board_result = dds.solvedBoards()
+    res_p = ctypes.pointer(board_result)
+    ret = dds.SolveAllBoards(boards_pbn, res_p)
+    print("""!!!!!!!!!!!!!!!!!!!!!!!!!!!""", ret)
+    board_result = map(format_future_tricks, list(board_result.solvedBoards)[:board_result.noOfBoards])
+    board_result = dict(zip(bad_cards, list(zip(board_result, bad_card_owners))))
+    return board_result
+                
 
 
 def analyze_par(pbn_deal, dealer, vul):
@@ -210,7 +283,25 @@ def format_board_res(packet_xml):
                                      play_diff[i:i+4],
                                      [True, False, False, False])), key=lambda x:x[1]))#is lead?
         game_result["analysis"]["play_anotated"] = play_seq
+        correct_play = get_correct_play(game_result['deal']['all'],
+                                        game_result["deal"]['trump'],
+                                        play_cards,
+                                        play_owner,
+                                        play_diff)
+        #convert side trick number to declarer trick number
+        for k, v in correct_play.items():
+            is_defence = v[1] % 2 ^ declarer % 2
+            if is_defence == 0:
+                is_defence = -1
+            # is_defence is 1 or -1
 
+            max_trick = max([x[1] for x in v[0]])
+            for card in v[0]:
+                card[1] = "{:+d}".format((max_trick - card[1]) * is_defence)
+
+        game_result["deal"]["correct_play"] = correct_play
+                                        
+        
         #parse result
         result = [game_result["deal"]["contract"]]
         result.append(game_result["deal"]["declarer"])

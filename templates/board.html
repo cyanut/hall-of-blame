@@ -1,7 +1,7 @@
 {% macro render_hand(seat, label, hand, board_num) %}
 <p><b>{{seat}}: {{label}}</b></p>
     {% for h in hand %}
-    <p><b>{{h[0]}}</b> {% for c in h[1]%}<span id="deal_{{board_num}}_{{h[0]}}{{c}}" >{{c}}</span>{% endfor %}
+    <p><b>{{h[0]}}</b> {% for c in h[1]%}<span id="deal_{{board_num}}_{{h[0]}}{{c}}" >{{c}}<sub>&nbsp;&nbsp;</sub></span>{% endfor %}
     {% endfor %}
 {% endmacro %}
 
@@ -132,14 +132,14 @@
 {% endwith %}
 
 <script>
-    var selector = '#board_{{board_num}} .play_seq_card';
-    $(selector).click(function(){
-        var all_card = $(selector);
+    $('#board_{{board_num}} .play_seq_card').click(function(){
+        $('#deal_{{board_num}} span sub').html('&nbsp;&nbsp;');
+        var all_card = $('#board_{{board_num}} .play_seq_card');
         var card_num = -1;
         for (var i=0; i<all_card.length; i++){
+            console.log(all_card[i], all_card[i] === this);
             if (all_card[i] === this){
                 card_num = i;
-                console.log("found card num", card_num);
             };
         };
         if (card_num < 0) return;
@@ -161,6 +161,10 @@
                 if ($(all_card[i]).hasClass("bad_card")){
                     console.log(all_card[i], "bad");
                     card_obj.addClass("bad_card", 400);
+                    corr = correct_cards[{{board_num}}][card_name][0];
+                    for (var j=0; j< corr.length; j++){
+                        $('#deal_{{board_num}}_' + corr[j][0] + ' sub').text(corr[j][1]);
+                    }
                 }
             } else if (played_card_num + 4<= i){
                 card_obj.removeClass("lead_card bad_card played_card playing_card");
@@ -174,4 +178,6 @@
 
         };
     });
+
+    correct_cards[{{board_num}}] = {{deal.correct_play|tojson|safe}};
 </script>
