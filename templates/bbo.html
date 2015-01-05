@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+{{super()}}
+<script>
+    $(document).ready(function(){
+        var socket = io.connect('http://' + document.domain + ":" + location.port + '/host');
+        socket.on('data', function(data){
+            $('#msg').text(data);
+        });
+        socket.on('connect', function(data){
+            $('#msg').text("connected to server.");
+        });
+        socket.on('disconnect', function(data){
+            $('#msg').text("disconnected. reconnecting ...");
+        });
+    });
+</script>
+{% endblock %}
+

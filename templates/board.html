@@ -137,7 +137,6 @@
         var all_card = $('#board_{{board_num}} .play_seq_card');
         var card_num = -1;
         for (var i=0; i<all_card.length; i++){
-            console.log(all_card[i], all_card[i] === this);
             if (all_card[i] === this){
                 card_num = i;
             };
@@ -153,13 +152,10 @@
                 card_obj.switchClass("lead_card bad_card playing_card", "played_card");
             } else if (played_card_num <= i && i < played_card_num + 4){
                 card_obj.switchClass("lead_card bad_card played_card", "playing_card");
-                console.log(all_card[i]);
                 if ($(all_card[i]).hasClass("lead_card")){
-                    console.log(all_card[i], "lead");
                     card_obj.addClass("lead_card", 400);
                 }
                 if ($(all_card[i]).hasClass("bad_card")){
-                    console.log(all_card[i], "bad");
                     card_obj.addClass("bad_card", 400);
                     corr = correct_cards[{{board_num}}][card_name][0];
                     for (var j=0; j< corr.length; j++){
