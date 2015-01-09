@@ -175,5 +175,7 @@
         };
     });
 
+    {% if deal.correct_play %}
     correct_cards[{{board_num}}] = {{deal.correct_play|tojson|safe}};
+    {% endif %}
 </script>
