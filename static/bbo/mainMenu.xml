@@ -44,13 +44,14 @@
 			<listItem label="Start a Teaching table" xlate="V0526" lower="y" type="table_start_teaching" scoring="4" rename_titlebar="n" />		
 		</list>			    
 		<list label="List all tables" xlate="V0513" stats="y" id="list_all_tables">
-			<listItem label="MSN Games Bridge Club" type="table_list" manager="zonemgr" full="n" affil="msn" stats="af"/>				
+			<listItem xlate="V1122" label="MSN Games Bridge Club" type="table_list" manager="zonemgr" full="n" affil="msn" stats="af"/>				
+			<listItem xlate="V1119" label="JCBL Bridge Club" type="table_list" manager="jcbl" full="n" affil="jcbl" stats="af"/>				
 			<listItem xlate="AC010" label="Main Bridge Club" type="table_list" manager="~bbo~mbc" full="n" stats="mbc" box_title="All tables" box_title_xlate="V0506"/>
 		    <listItem xlate="MA095" label="Relaxed Bridge Club" type="table_list" manager="bbo~si" full="n" stats="rbc"/>
 		    <list xlate="V0075" label="All Public and Private Clubs" stats="ac">		    		        
-		    	<listItem label="The WP Refugees' Bridge Club (public)" type="table_list" manager="mikefofva" full="n"/>
-		    	<listItem label="The Total Points Tournament Bridge Club (public)" type="table_list" manager="TotalPoint" full="n"/>		        
-		    	<listItem label="The Acol Bridge Club (public)" type="table_list" manager="aacol" full="n"/>		        
+		    	<listItem xlate="V1123" label="The WP Refugees' Bridge Club (public)" type="table_list" manager="mikefofva" full="n"/>
+		    	<listItem xlate="V1124" label="The Total Points Tournament Bridge Club (public)" type="table_list" manager="TotalPoint" full="n"/>		        
+		    	<listItem xlate="V1125" label="The Acol Bridge Club (public)" type="table_list" manager="aacol" full="n"/>		        
 		        <listItem xlate="V0076" label="All Public Clubs" type="club_list" clubs="public"/>
 				<listItem xlate="V0077" label="All Private Clubs" type="club_list" clubs="private"/>
 		    </list>									
@@ -69,10 +70,14 @@
 			<listItem label="Start a 4-Hands game (Free)" xlate="V0711" box_title="Start a Bridge Solataire game" box_title_xlate="V0710" type="table_start_solitaire" scoring="1web4" rename_titlebar="n"/>
 			<listItem label="Just Play Bridge (Free)" xlate="V0751" type="table_start_solitaire" scoring="1web0" rename_titlebar="n"/>			
 			<listItem label="Bridge Master" type="table_start_solitaire" scoring="1bm" rename_titlebar="n" invisible="y"/>
-			<listItem label="Play in an Instant Tournament" xlate="V0740" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp" rename_titlebar="n"/>					
+			<listItem label="Play in an Instant Tournament" xlate="V0740" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp,7acbl-rdup-mp,8acbl-rdup-imp" rename_titlebar="n"/>					
+			<listItem label="Sample IMP Instant Tournament (Free)" type="table_start_solitaire" scoring="8trial-rdup-imp" rename_titlebar="n" invisible="y"/>
+			<listItem label="Sample MP Instant Tournament (Free)" xlate="F0248" type="table_start_solitaire" scoring="7trial-rdup-mp" rename_titlebar="n"/>
 		</list>	 					   
    		<list xlate="V0083" label="ACBL World" special="y" imageURL="config/default/acblbut.gif" icon="acbl" style="jump" bbo_only="y" t_list="acbl" t_list_title_xlate="MA000" t_list_title="ACBL Masterpoint Tournaments">
-   			<list label="ACBL Masterpoint Races" buttonBar="y" box_title_xlate="V0083" box_title="ACBL World">
+   			<!-- <listItem label="Instant Tournaments" xlate="V0742" special="y" lower="y" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp,7acbl-rdup-mp,8acbl-rdup-imp" forceACBL="y" rename_titlebar="n"/>  -->		
+			<listItem label="Instant Tournaments" xlate="V0742"     type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp,7acbl-rdup-mp,8acbl-rdup-imp" forceACBL="y" buttonBar="y" emphasize="y" />
+			<list label="ACBL Masterpoint Races" buttonBar="y" box_title_xlate="V0083" box_title="ACBL World">
    				<listItem xlate="V0094" label="Lifetime leaders" type="leader_list" mpType="2" mpTime="life"/>   
 	    		<listItem xlate="V0095" label="Yearly leaders" type="leader_list" mpType="2" mpTime="year"/>   
 			    <listItem xlate="V0096" label="Monthly leaders" type="leader_list" mpType="2" mpTime="month"/>
@@ -88,7 +93,7 @@
 				<listItem label="Download ACBL's free lesson software" type="urlnew" url="https://web.acbl.org/LearnToPlayBridge/"/>								
 			</list>
 		</list>		
-		<listItem label="Instant Tournaments" xlate="V0742" special="y" lower="y" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp" rename_titlebar="n"/>		
+		<listItem label="Instant Tournaments" xlate="V0742" special="y" lower="y" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="7rdup-mp,8rdup-imp,7acbl-rdup-mp,8acbl-rdup-imp" rename_titlebar="n"/>		
 		<listItem label="Bridge Master" special="y" lower="y" bbo_only="y" allow_anon="n" type="table_start_solitaire" scoring="1bm" rename_titlebar="n" invisible="n" icon="star"/>
    		<list xlate="V0084" label="Robot World" special="y" imageURL="config/default/robotbut.gif" icon="robot" style="jump" bbo_only="y" t_list="bot" t_list_title_xlate="V0481" t_list_title="Robot Tournaments">			
 			<listItem xlate="V0090" label="About Robot Tournaments" type="urlpopup" url="http://online.bridgebase.com/v2/doc_about_robot_tourneys.html" buttonBar="y" box_title_xlate="V0084" box_title="Robot World"/>

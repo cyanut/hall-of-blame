@@ -179,6 +179,17 @@
   <m i="AB305" d="Invisible"/>
   <m i="AB306" d="Champion"/>
   <m i="AB307" d="Your comments"/>
+  <m i="AB400" d="Partnership Desk Registration Options"/>
+  <m i="AB401" d="I am willing to pay for only my own entry fee"/>
+  <m i="AB402" d="I may be willing to pay my partner's entry fee"/>
+  <m i="AB403" d="My partner must pay both of our entry fees"/>
+  <m i="AB404" d="My partner must pay both of our entry fees plus"/>
+  <m i="AB405" d="BB$"/>
+  <m i="AB406" d="My partner must pay both of our entry fees plus {1}"/>
+  <m i="AB407" d="Please select one of the following options"/>
+  <m i="AB408" d="Payment preference unknown"/>
+  <m i="AB409" d="Show only members who are logged in"/>
+  <m i="AB410" d="Show only members who will pay their own entry fees"/>
   <m i="AC000" d="{1} Tables  {2} Players"/>
   <m i="AC001" d="Places to play"/>
   <m i="AC002" d="Tables"/>
@@ -351,9 +362,6 @@
   <m i="AC327" d="Starts in {1}+ days"/>
   <m i="AC328" d="Starts in {1}+ hours"/>
   <m i="AC329" d="Starts in {1}+ mins."/>
-  <m i="AC391" d="{1} Tournaments  {2} Displayed"/>
-  <m i="AC392" d="Click to register for this tournament"/>
-  <m i="AC393" d="Click the link below to view tournament results"/>
   <m i="AC330" d="Create Tournament"/>
   <m i="AC331" d="Tournament name"/>
   <m i="AC332" d="Type"/>
@@ -415,6 +423,9 @@
   <m i="AC388" d="Tournaments starting later"/>
   <m i="AC389" d="Click to show these tournaments"/>
   <m i="AC390" d="Click to hide these tournaments"/>
+  <m i="AC391" d="{1} Tournaments  {2} Displayed"/>
+  <m i="AC392" d="Click to register for this tournament"/>
+  <m i="AC393" d="Click the link below to view tournament results"/>
   <m i="AC400" d="1 Item"/>
   <m i="AC401" d="{1} Items"/>
   <m i="AC402" d="Go Up One Level"/>
@@ -1135,6 +1146,114 @@
   <m i="AK011" d="By chat/mail"/>
   <m i="AK012" d="By mail"/>
   <m i="AK013" d="Club"/>
+  <m i="AK100" d="Send private chat to {1}"/>
+  <m i="AK101" d="Join {1}'s table"/>
+  <m i="AK102" d="Define {1} as a friend"/>
+  <m i="AK103" d="Define {1} as an enemy"/>
+  <m i="AK104" d="Define {1} as a neutral"/>
+  <m i="AK105" d="Edit player notes for {1}"/>
+  <m i="AK106" d="Copy chat message"/>
+  <m i="AK200" d="Edit your profile"/>
+  <m i="AK201" d="Ignore lobby chat"/>
+  <m i="AK202" d="Manage your BB$ account"/>
+  <m i="AK300" d="Click for next page. Right click to jump."/>
+  <m i="AK301" d="Click for previous page. Right click to jump."/>
+  <m i="AK302" d="Top"/>
+  <m i="AK400" d="Assign {1} to"/>
+  <m i="AK401" d="{1} for team {2}"/>
+  <m i="AL000" d="Voice"/>
+  <m i="AL001" d="Enable voice for"/>
+  <m i="AL002" d="Private chat"/>
+  <m i="AL003" d="Your own chat"/>
+  <m i="AL004" d="Table chat"/>
+  <m i="AL005" d="Chat to tournament"/>
+  <m i="AL006" d="Chat to kibitzers"/>
+  <m i="AL007" d="Chat to club"/>
+  <m i="AL008" d="Chat during vugraph"/>
+  <m i="AL009" d="Broadcast chat"/>
+  <m i="AL010" d="Claims"/>
+  <m i="AL011" d="Redeals"/>
+  <m i="AL012" d="Undos"/>
+  <m i="AL013" d="When a card is played"/>
+  <m i="AL014" d="When a bid is made"/>
+  <m i="AL015" d="Purge before speaking"/>
+  <m i="AL016" d="Bridge Master Movies"/>
+  <m i="AL017" d="Advice from GIB"/>
+  <m i="AM000" d="GIB plays for"/>
+  <m i="AM001" d="Have GIB replace players who leave"/>
+  <m i="AM002" d="GIB cannot sit in all 4 seats at a duplicate table."/>
+  <m i="AM003" d="GIB play speed"/>
+  <m i="AM004" d="GIB advice speed"/>
+  <m i="AM005" d="GIB could not be started"/>
+  <m i="AM010" d="Play bridge against GIB!"/>
+  <m i="AM011" d="GIB play settings..."/>
+  <m i="AM012" d="Include trick totals in double dummy analysis"/>
+  <m i="AM013" d="Display double dummy analysis for current trick"/>
+  <m i="AM014" d="Display double dummy analysis for past tricks"/>
+  <m i="AM015" d="Show double dummy analysis"/>
+  <m i="AM016" d="Hide double dummy analysis"/>
+  <m i="AM017" d="Ask GIB for advice"/>
+  <m i="AM100" d="Online colors"/>
+  <m i="AM101" d="Edit foreground color"/>
+  <m i="AM102" d="Edit background color"/>
+  <m i="AM103" d="Test"/>
+  <m i="AN000" d="Show old style convention card window"/>
+  <m i="AN001" d="Work convention card"/>
+  <m i="AN002" d="NS convention card"/>
+  <m i="AN003" d="EW convention card"/>
+  <m i="AN004" d="{1} are using a new convention card"/>
+  <m i="AN005" d="{1} have cleared their convention card"/>
+  <m i="AN006" d="Convention card options"/>
+  <m i="AN007" d="Automatically display explanations"/>
+  <m i="AN008" d="Of bids you might make"/>
+  <m i="AN009" d="Of bids you have made"/>
+  <m i="AN010" d="Of bids your partner has made"/>
+  <m i="AN011" d="Of bids your opponents have made"/>
+  <m i="AN012" d="Of bids made when you are kibitzing"/>
+  <m i="AN013" d="Hit ESCape on your keyboard or move your mouse over an automatic explanation to remove it from your screen."/>
+  <m i="AN014" d="Error loading {1} convention card."/>
+  <m i="AN015" d="Show disposition"/>
+  <m i="AN016" d="Show expected length"/>
+  <m i="AN017" d="Show possible outcomes"/>
+  <m i="AN018" d="Always"/>
+  <m i="AN019" d="Never"/>
+  <m i="AN020" d="Only when defined"/>
+  <m i="AP000" d="{1} Rooms  {2} Tables  {3} Players"/>
+  <m i="AP001" d="Money Bridge"/>
+  <m i="AP002" d="Table options"/>
+  <m i="AP003" d="Robot speed"/>
+  <m i="AP004" d="Clock speed"/>
+  <m i="AP005" d="Slow"/>
+  <m i="AP006" d="Medium"/>
+  <m i="AP007" d="Fast"/>
+  <m i="AP008" d="Allow players to chat"/>
+  <m i="AP009" d="{1} is playing bridge for money."/>
+  <m i="AP010" d="Player"/>
+  <m i="AP011" d="Stake"/>
+  <m i="AP012" d="Clock"/>
+  <m i="AP013" d="Robots"/>
+  <m i="AP014" d="Allowed"/>
+  <m i="AP015" d="Room"/>
+  <m i="AP016" d="Click to play at this table"/>
+  <m i="AP017" d="Manage your accounts"/>
+  <m i="AP018" d="Chat is not allowed at this table"/>
+  <m i="AP019" d="Click to kibitz"/>
+  <m i="AP020" d="Balance"/>
+  <m i="AP021" d="Manage Account"/>
+  <m i="AP022" d="Deposit"/>
+  <m i="AP023" d="Rules"/>
+  <m i="AP025" d="No open tables found at this stake."/>
+  <m i="AP026" d="Session"/>
+  <m i="AP027" d="Event Leaders and Prizes"/>
+  <m i="AP028" d="Open tables"/>
+  <m i="AR001" d="Leaderboard"/>
+  <m i="AR002" d="Play"/>
+  <m i="AR003" d="Just Play Bridge"/>
+  <m i="AR004" d="Players online"/>
+  <m i="AR005" d="Player Name"/>
+  <m i="AR006" d="Go!"/>
+  <m i="AR007" d="Robot"/>
+  <m i="AR008" d="You"/>
   <m i="BA000" d="Leave {1}"/>
   <m i="BA001" d="Table options"/>
   <m i="BA002" d="Request new deal"/>
@@ -1221,6 +1340,120 @@
   <m i="BB017" d="Skill levels to display"/>
   <m i="BB018" d="Forms of Scoring to display"/>
   <m i="BB019" d="Only my country"/>
+  <m i="C0000" d="Classic view"/>
+  <m i="C0001" d="Options"/>
+  <m i="C0002" d="Number of columns"/>
+  <m i="C0003" d="Start list at"/>
+  <m i="C0004" d="More options..."/>
+  <m i="C0005" d="Small lobby font"/>
+  <m i="C0006" d="Would you like to send {1} a chat message?"/>
+  <m i="C0007" d="Would you like to leave {1} a mail message?"/>
+  <m i="C0008" d="Center items in list"/>
+  <m i="C0009" d="Award symbols"/>
+  <m i="C0010" d="Champions"/>
+  <m i="C0011" d="Masterpoints"/>
+  <m i="C0012" d="Left of name"/>
+  <m i="C0013" d="Right of name"/>
+  <m i="C0014" d="{1} Edition"/>
+  <m i="C0100" d="Small font in lists"/>
+  <m i="C0101" d="Fonts"/>
+  <m i="C0102" d="Shadowed titles"/>
+  <m i="C0103" d="Tooltip delays (in 1/10 seconds)"/>
+  <m i="C0104" d="Mouse over lobby list"/>
+  <m i="C0105" d="Mouse over table list"/>
+  <m i="C0106" d="Mouse over tournament list"/>
+  <m i="C0107" d="Mouse over other list"/>
+  <m i="C0108" d="Mouse over chat message"/>
+  <m i="C0109" d="Mouse over seat"/>
+  <m i="C0110" d="Mouse over kibitzer"/>
+  <m i="C0111" d="Mouse over button"/>
+  <m i="C0200" d="Display private chat using bubbles if necessary"/>
+  <m i="C0201" d="Display public chat using bubbles if necessary"/>
+  <m i="C0202" d="Clear chat window"/>
+  <m i="C0203" d="Show open tables"/>
+  <m i="C0204" d="Show tables with friends"/>
+  <m i="C0205" d="Show tables with champions"/>
+  <m i="C0206" d="Hide tables if permission required to play"/>
+  <m i="C0207" d="Hide tables if permission required to kibitz"/>
+  <m i="C0208" d="Hide tables if kibitzing disallowed"/>
+  <m i="C0209" d="Pictures of tables"/>
+  <m i="C0210" d="Small tables font"/>
+  <m i="C0211" d="Only my level"/>
+  <m i="C0212" d="Select countries"/>
+  <m i="C0213" d="Select levels"/>
+  <m i="C0214" d="Select scoring"/>
+  <m i="C0215" d="To kibitzers"/>
+  <m i="C0216" d="Use emoticons in chat"/>
+  <m i="C0300" d="Enable sound for:"/>
+  <m i="C0301" d="Enable voice for:"/>
+  <m i="C0302" d="Select the sound effects that you would like to hear by clicking on the list above. Sound effects will be enabled for all events that appear in blue in the list above. You can alter the sound effects that an event produces by changing the files in:"/>
+  <m i="C0303" d="Friend log in"/>
+  <m i="C0400" d="Bridge diagram colors"/>
+  <m i="C0401" d="Felt background"/>
+  <m i="C0402" d="Other colors"/>
+  <m i="C0403" d="Restore my colors"/>
+  <m i="C0500" d="A live vugraph broadcast has just started."/>
+  <m i="C0501" d="Notify me through chat when a vugraph match starts"/>
+  <m i="C0502" d="A list of your friends who are logged in will appear in this area. Click your right mouse button on another member's name to define that person as your friend."/>
+  <m i="C0503" d="To use this area to display members who are logged in who are not your friends, click the "/>
+  <m i="C0504" d="Home"/>
+  <m i="C0505" d="Back"/>
+  <m i="C0506" d="Seeking a game"/>
+  <m i="C0507" d="Seekers"/>
+  <m i="C0508" d="{1} is seeking a game"/>
+  <m i="C0509" d="Show members who are seeking a game"/>
+  <m i="C0510" d="Show seekers"/>
+  <m i="C0511" d="Select members to display"/>
+  <m i="C0512" d="Show all members"/>
+  <m i="C0513" d="Show only you"/>
+  <m i="C0514" d="Show only {1} members"/>
+  <m i="C0600" d="Click to return to top level menu"/>
+  <m i="C0601" d="Click to return to previous screen"/>
+  <m i="C0602" d="Click to select display options"/>
+  <m i="C0700" d="In order to choose which members appear in this area, click "/>
+  <m i="C0701" d="Members in this"/>
+  <m i="C0702" d="color"/>
+  <m i="C0703" d="are here to help you. Left click to send a private chat message."/>
+  <m i="C0704" d="are your friends. Right click to define a member as your friend. "/>
+  <m i="C1000" d="Profile"/>
+  <m i="C1001" d="General"/>
+  <m i="C1002" d="At a table"/>
+  <m i="C1003" d="Colors"/>
+  <m i="C2000" d="{1} Players"/>
+  <m i="C2001" d="{1} Displayed"/>
+  <m i="C2002" d="{1} Tables"/>
+  <m i="C2003" d="1 Table"/>
+  <m i="C2004" d="{1} Tournaments"/>
+  <m i="C2005" d="This {1} is about to start."/>
+  <m i="C2006" d="About to start"/>
+  <m i="C2007" d="There are no running or pending tournaments of the type you selected."/>
+  <m i="C2008" d="Upcoming Broadcasts"/>
+  <m i="C2009" d="Vugraph schedule web page"/>
+  <m i="C2010" d="Create new vugraph table"/>
+  <m i="C2011" d="1 Player"/>
+  <m i="C2020" d="Click to show list of who is online"/>
+  <m i="C2021" d="Click to show list of tables"/>
+  <m i="C2022" d="Click to show list of tournaments"/>
+  <m i="C2030" d="Click to hide list of who is online"/>
+  <m i="C2031" d="Click to hide list of tables"/>
+  <m i="C2032" d="Click to hide list of tournaments"/>
+  <m i="C2040" d="Click to set options for lobby list"/>
+  <m i="C2041" d="Click to set options for table list"/>
+  <m i="C2050" d="Click to hide options for lobby list"/>
+  <m i="C2051" d="Click to hide options for table list"/>
+  <m i="C2052" d="Show all tables"/>
+  <m i="C2053" d="Show empty list"/>
+  <m i="C2054" d="Select tables to display"/>
+  <m i="DC001" d="Settings"/>
+  <m i="DC002" d="How many more tricks do you claim?"/>
+  <m i="DC003" d="Fetching explanations"/>
+  <m i="DC004" d="No explanation available"/>
+  <m i="DC005" d="Service unavailable. Please refesh page or try again later."/>
+  <m i="DC006" d="You will be the declarer"/>
+  <m i="DC007" d="Connection problem. Retrying..."/>
+  <m i="DC008" d="You cannot play cards for {1}"/>
+  <m i="DC009" d="It is {1}'s turn to play"/>
+  <m i="DC010" d="{1} must play a {2}"/>
   <m i="F0001" d="Could not create new user.{r}{n}{r}{n}A temporary system error has occurred.{r}{n}Database not available.{r}{n}Please wait a few minutes and try again."/>
   <m i="F0002" d="Your log in request has been refused.{r}{n}User {1 user} has been barred until {2 until}{r}{n}Reason:{3 reason}{r}{n}{r}{n}Please email abuse@bridgebase.com for more information.{r}{n}Include your BBO username if you send us email."/>
   <m i="F0003" d="{r}{n}A temporary system error has occurred.{r}{n}Database not available.{r}{n}Please wait a few minutes and try again."/>
@@ -1242,6 +1475,7 @@
   <m i="F0019" d="Stuck username {1 user} automatically removed"/>
   <m i="F0020" d="Please don't use abusive language"/>
   <m i="F0021" d="You were banned for using abusive language"/>
+  <m i="F0022" d="Invalid affiliate"/>
   <m i="F0100" d="Club mail delivered to {1 number of members in club} members"/>
   <m i="F0101" d="Mail to club members"/>
   <m i="F0102" d="Club"/>
@@ -1303,6 +1537,7 @@
   <m i="F0245" d="Solitaire Bridge"/>
   <m i="F0246" d="Not now"/>
   <m i="F0247" d="Close"/>
+  <m i="F0248" d="Weekly Free Instant Tournament"/>
   <m i="F0300" d="Tournament Sponsor: {1 tourney sponsor}{r}{n}Please verify your player number.{r}{n}{r}{n}On file: {2 player Number}{r}{n}{r}{n}If this is correct, press OK. Otherwise, please fill in your player number"/>
   <m i="F0301" d="Your partner is not online"/>
   <m i="F0302" d="No data"/>
@@ -1343,7 +1578,7 @@
   <m i="F0337" d="An internal error was detected while saving your tournament"/>
   <m i="F0338" d="{1 username} is not online"/>
   <m i="F0339" d="{1 username} is using an obsolete version of BBO"/>
-  <m i="F0340" d="Internal error. Tourney not found, or tourney not complete."/>
+  <m i="F0340" d="Internal error. Tournament not found."/>
   <m i="F0341" d="Internal error detected while scoring tourney."/>
   <m i="F0342" d="This tournament uses predealt hands"/>
   <m i="F0343" d="Tournament Status"/>
@@ -1461,7 +1696,7 @@
   <m i="F0455" d="You cannot ask for a substitute while your partner is still online"/>
   <m i="F0456" d="An error was detected. No information available."/>
   <m i="F0457" d="You have tried to register with a player who is already on another team. Registration ignored. Player: {1}  Team: {2}"/>
-  <m i="F0458" d="You have tried to register with a player but you are already on another team. Team: {1}"/>
+  <m i="F0458" d="You have tried to register with a player but you are already on another team."/>
   <m i="F0459" d="This tourney charges a card fee of {1}{r}{n}This fee will be deducted from your account when the tourney starts up.{r}{n}Do you wish to proceed?"/>
   <m i="F0460" d="Pay"/>
   <m i="F0461" d="Pay for partner"/>
@@ -1491,6 +1726,7 @@
   <m i="F0485" d="Your convention card will default to GIB 2/1 if it is not set to something else."/>
   <m i="F0486" d="Need {1} players for Team Match ({2} Boards)"/>
   <m i="F0487" d="Error. Brand new users may not create team games."/>
+  <m i="F0488" d="{1} and {2} invite you to join their team for a Team Tournament{r}{n}Host:{3}{r}{n}Title:{4}{r}{n}{r}{n}Do you accept?"/>
   <m i="F0600" d="Error during fetch.{r}{n}Invalid parameters."/>
   <m i="F0601" d="Error during fetch.{r}{n}Load failed."/>
   <m i="F0602" d="Error during fetch.{r}{n}Invalid key."/>
@@ -1660,32 +1896,6 @@
   <m i="F1524" d="Advanced robots are slower and better"/>
   <m i="F1525" d="Robots enabled for this session"/>
   <m i="F1526" d="Robots enabled for the next {1} days {2} hours {3} minutes "/>
-  <m i="AB400" d="Partnership Desk Registration Options"/>
-  <m i="AB401" d="I am willing to pay for only my own entry fee"/>
-  <m i="AB402" d="I may be willing to pay my partner's entry fee"/>
-  <m i="AB403" d="My partner must pay both of our entry fees"/>
-  <m i="AB404" d="My partner must pay both of our entry fees plus"/>
-  <m i="AB405" d="BB$"/>
-  <m i="AB406" d="My partner must pay both of our entry fees plus {1}"/>
-  <m i="AB407" d="Please select one of the following options"/>
-  <m i="AB408" d="Payment preference unknown"/>
-  <m i="AB409" d="Show only members who are logged in"/>
-  <m i="AB410" d="Show only members who will pay their own entry fees"/>
-  <m i="AK100" d="Send private chat to {1}"/>
-  <m i="AK101" d="Join {1}'s table"/>
-  <m i="AK102" d="Define {1} as a friend"/>
-  <m i="AK103" d="Define {1} as an enemy"/>
-  <m i="AK104" d="Define {1} as a neutral"/>
-  <m i="AK105" d="Edit player notes for {1}"/>
-  <m i="AK106" d="Copy chat message"/>
-  <m i="AK200" d="Edit your profile"/>
-  <m i="AK201" d="Ignore lobby chat"/>
-  <m i="AK202" d="Manage your BB$ account"/>
-  <m i="AK300" d="Click for next page. Right click to jump."/>
-  <m i="AK301" d="Click for previous page. Right click to jump."/>
-  <m i="AK302" d="Top"/>
-  <m i="AK400" d="Assign {1} to"/>
-  <m i="AK401" d="{1} for team {2}"/>
   <m i="F1600" d="Show aliases of {1}"/>
   <m i="F1601" d="Return {1} to lobby"/>
   <m i="F1602" d="Boot {1} from BBO"/>
@@ -1698,6 +1908,14 @@
   <m i="F1609" d="Show IP address for {1}"/>
   <m i="F1610" d="Invite {1} to play"/>
   <m i="F1800" d="Find a game"/>
+  <m i="F1900" d="Bridge for Money"/>
+  <m i="F1901" d=" Too many tables active.{r}{n}Please try again later"/>
+  <m i="F1902" d="No need to rent.  You already have permission to use the robots."/>
+  <m i="F1903" d="Robot has been rented.  Thank you."/>
+  <m i="F1904" d="Would you like to rent a robot  for one week for $1 ?"/>
+  <m i="F1905" d="You don't have enough BB$ in your account.  Would you like to deposit some BB$ now?"/>
+  <m i="F1906" d="Start a table with you and three robots ?"/>
+  <m i="F2000" d="Test"/>
   <m i="G0001" d="Find a game"/>
   <m i="G0002" d="Play"/>
   <m i="G0003" d="Kibitz"/>
@@ -1713,267 +1931,8 @@
   <m i="G0013" d="Language"/>
   <m i="G0014" d="Level"/>
   <m i="G0015" d="Country"/>
-  <m i="AL000" d="Voice"/>
-  <m i="AL001" d="Enable voice for"/>
-  <m i="AL002" d="Private chat"/>
-  <m i="AL003" d="Your own chat"/>
-  <m i="AL004" d="Table chat"/>
-  <m i="AL005" d="Chat to tournament"/>
-  <m i="AL006" d="Chat to kibitzers"/>
-  <m i="AL007" d="Chat to club"/>
-  <m i="AL008" d="Chat during vugraph"/>
-  <m i="AL009" d="Broadcast chat"/>
-  <m i="AL010" d="Claims"/>
-  <m i="AL011" d="Redeals"/>
-  <m i="AL012" d="Undos"/>
-  <m i="AL013" d="When a card is played"/>
-  <m i="AL014" d="When a bid is made"/>
-  <m i="AL015" d="Purge before speaking"/>
-  <m i="AL016" d="Bridge Master Movies"/>
-  <m i="AL017" d="Advice from GIB"/>
-  <m i="W0000" d="Scheduled Vugraphs"/>
-  <m i="W0001" d="Hands played by {1} since {2} to {3}"/>
-  <m i="W0002" d="No data found."/>
-  <m i="W0003" d="N/A"/>
-  <m i="W0004" d="Time"/>
-  <m i="W0005" d="North"/>
-  <m i="W0006" d="South"/>
-  <m i="W0007" d="East"/>
-  <m i="W0008" d="West"/>
-  <m i="W0009" d="Result"/>
-  <m i="W0010" d="Points"/>
-  <m i="W0011" d="Score"/>
-  <m i="W0012" d="Movie"/>
-  <m i="W0013" d="Traveller"/>
-  <m i="W0014" d="Tourney {1}"/>
-  <m i="W0015" d="Traveller {1}"/>
-  <m i="W0016" d="Board {1} Traveller"/>
-  <m i="W0017" d="{1} Average"/>
-  <m i="W0018" d="{1} Total"/>
-  <m i="W0019" d="{1} Hands"/>
-  <m i="W0020" d="Grand Total"/>
-  <m i="W0021" d="Home"/>
-  <m i="W0022" d="Vugraph Schedule"/>
-  <m i="W0023" d="Hand Records"/>
-  <m i="W0024" d="BBO Points"/>
-  <m i="W0025" d="All rights reserved"/>
-  <m i="W0026" d="Invalid input. Please use"/>
-  <m i="W0027" d="Get hands played by a user between two dates"/>
-  <m i="W0028" d="Enter username:"/>
-  <m i="W0029" d="Enter the start date:"/>
-  <m i="W0030" d="Interval to retrieve:"/>
-  <m i="W0031" d="Interval direction:"/>
-  <m i="W0032" d="Backward"/>
-  <m i="W0033" d="Forward"/>
-  <m i="W0034" d="Show summaries every:"/>
-  <m i="W0035" d="Get hands"/>
-  <m i="W0036" d="Reset"/>
-  <m i="W0037" d="day(s)"/>
-  <m i="W0038" d="week(s)"/>
-  <m i="W0039" d="month(s)"/>
-  <m i="W0041" d="BBO Points"/>
-  <m i="W0042" d="All years"/>
-  <m i="W0043" d="All months"/>
-  <m i="W0044" d="Get listing"/>
-  <m i="W0045" d="Board {1} traveller"/>
-  <m i="W0046" d="What's this?"/>
-  <m i="W0047" d="Organization"/>
-  <m i="W0048" d="Total"/>
-  <m i="W0049" d="in tourneys of"/>
-  <m i="W0050" d="Year"/>
-  <m i="W0051" d="Month"/>
-  <m i="W0052" d="in"/>
-  <m i="W0053" d="Tourney time"/>
-  <m i="W0054" d="Leaders"/>
-  <m i="W0055" d="Rank"/>
-  <m i="W0056" d="Username"/>
-  <m i="W0058" d="this page"/>
-  <m i="W0059" d="denotes required field"/>
-  <m i="W0060" d="Don't show"/>
-  <m i="W0061" d="Recently played tournaments"/>
-  <m i="W0062" d="Please enter a valid username"/>
-  <m i="W0063" d="Username not valid"/>
-  <m i="AM000" d="GIB plays for"/>
-  <m i="AM001" d="Have GIB replace players who leave"/>
-  <m i="AM002" d="GIB cannot sit in all 4 seats at a duplicate table."/>
-  <m i="AM003" d="GIB play speed"/>
-  <m i="AM004" d="GIB advice speed"/>
-  <m i="AM005" d="GIB could not be started"/>
-  <m i="AM010" d="Play bridge against GIB!"/>
-  <m i="AM011" d="GIB play settings..."/>
-  <m i="AM012" d="Include trick totals in double dummy analysis"/>
-  <m i="AM013" d="Display double dummy analysis for current trick"/>
-  <m i="AM014" d="Display double dummy analysis for past tricks"/>
-  <m i="AM015" d="Show double dummy analysis"/>
-  <m i="AM016" d="Hide double dummy analysis"/>
-  <m i="AM017" d="Ask GIB for advice"/>
-  <m i="AM100" d="Online colors"/>
-  <m i="AM101" d="Edit foreground color"/>
-  <m i="AM102" d="Edit background color"/>
-  <m i="AM103" d="Test"/>
-  <m i="AN000" d="Show old style convention card window"/>
-  <m i="AN001" d="Work convention card"/>
-  <m i="AN002" d="NS convention card"/>
-  <m i="AN003" d="EW convention card"/>
-  <m i="AN004" d="{1} are using a new convention card"/>
-  <m i="AN005" d="{1} have cleared their convention card"/>
-  <m i="AN006" d="Convention card options"/>
-  <m i="AN007" d="Automatically display explanations"/>
-  <m i="AN008" d="Of bids you might make"/>
-  <m i="AN009" d="Of bids you have made"/>
-  <m i="AN010" d="Of bids your partner has made"/>
-  <m i="AN011" d="Of bids your opponents have made"/>
-  <m i="AN012" d="Of bids made when you are kibitzing"/>
-  <m i="AN013" d="Hit ESCape on your keyboard or move your mouse over an automatic explanation to remove it from your screen."/>
-  <m i="AN014" d="Error loading {1} convention card."/>
-  <m i="AN015" d="Show disposition"/>
-  <m i="AN016" d="Show expected length"/>
-  <m i="AN017" d="Show possible outcomes"/>
-  <m i="AN018" d="Always"/>
-  <m i="AN019" d="Never"/>
-  <m i="AN020" d="Only when defined"/>
-  <m i="AP000" d="{1} Rooms  {2} Tables  {3} Players"/>
-  <m i="AP001" d="Money Bridge"/>
-  <m i="AP002" d="Table options"/>
-  <m i="AP003" d="Robot speed"/>
-  <m i="AP004" d="Clock speed"/>
-  <m i="AP005" d="Slow"/>
-  <m i="AP006" d="Medium"/>
-  <m i="AP007" d="Fast"/>
-  <m i="AP008" d="Allow players to chat"/>
-  <m i="AP009" d="{1} is playing bridge for money."/>
-  <m i="AP010" d="Player"/>
-  <m i="AP011" d="Stake"/>
-  <m i="AP012" d="Clock"/>
-  <m i="AP013" d="Robots"/>
-  <m i="AP014" d="Allowed"/>
-  <m i="AP015" d="Room"/>
-  <m i="AP016" d="Click to play at this table"/>
-  <m i="AP017" d="Manage your accounts"/>
-  <m i="AP018" d="Chat is not allowed at this table"/>
-  <m i="AP019" d="Click to kibitz"/>
-  <m i="AP020" d="Balance"/>
-  <m i="AP021" d="Manage Account"/>
-  <m i="AP022" d="Deposit"/>
-  <m i="AP023" d="Rules"/>
-  <m i="AP025" d="No open tables found at this stake."/>
-  <m i="AP026" d="Session"/>
-  <m i="AP027" d="Event Leaders and Prizes"/>
-  <m i="AP028" d="Open tables"/>
-  <m i="F1900" d="Bridge for Money"/>
-  <m i="F1901" d=" Too many tables active.{r}{n}Please try again later"/>
-  <m i="F1902" d="No need to rent.  You already have permission to use the robots."/>
-  <m i="F1903" d="Robot has been rented.  Thank you."/>
-  <m i="F1904" d="Would you like to rent a robot  for one week for $1 ?"/>
-  <m i="F1905" d="You don't have enough BB$ in your account.  Would you like to deposit some BB$ now?"/>
-  <m i="F1906" d="Start a table with you and three robots ?"/>
-  <m i="C0000" d="Classic view"/>
-  <m i="C0001" d="Options"/>
-  <m i="C0002" d="Number of columns"/>
-  <m i="C0003" d="Start list at"/>
-  <m i="C0004" d="More options..."/>
-  <m i="C0005" d="Small lobby font"/>
-  <m i="C0006" d="Would you like to send {1} a chat message?"/>
-  <m i="C0007" d="Would you like to leave {1} a mail message?"/>
-  <m i="C0008" d="Center items in list"/>
-  <m i="C0009" d="Award symbols"/>
-  <m i="C0010" d="Champions"/>
-  <m i="C0011" d="Masterpoints"/>
-  <m i="C0012" d="Left of name"/>
-  <m i="C0013" d="Right of name"/>
-  <m i="C0014" d="{1} Edition"/>
-  <m i="C0100" d="Small font in lists"/>
-  <m i="C0101" d="Fonts"/>
-  <m i="C0102" d="Shadowed titles"/>
-  <m i="C0103" d="Tooltip delays (in 1/10 seconds)"/>
-  <m i="C0104" d="Mouse over lobby list"/>
-  <m i="C0105" d="Mouse over table list"/>
-  <m i="C0106" d="Mouse over tournament list"/>
-  <m i="C0107" d="Mouse over other list"/>
-  <m i="C0108" d="Mouse over chat message"/>
-  <m i="C0109" d="Mouse over seat"/>
-  <m i="C0110" d="Mouse over kibitzer"/>
-  <m i="C0111" d="Mouse over button"/>
-  <m i="C0200" d="Display private chat using bubbles if necessary"/>
-  <m i="C0201" d="Display public chat using bubbles if necessary"/>
-  <m i="C0202" d="Clear chat window"/>
-  <m i="C0203" d="Show open tables"/>
-  <m i="C0204" d="Show tables with friends"/>
-  <m i="C0205" d="Show tables with champions"/>
-  <m i="C0206" d="Hide tables if permission required to play"/>
-  <m i="C0207" d="Hide tables if permission required to kibitz"/>
-  <m i="C0208" d="Hide tables if kibitzing disallowed"/>
-  <m i="C0209" d="Pictures of tables"/>
-  <m i="C0210" d="Small tables font"/>
-  <m i="C0211" d="Only my level"/>
-  <m i="C0212" d="Select countries"/>
-  <m i="C0213" d="Select levels"/>
-  <m i="C0214" d="Select scoring"/>
-  <m i="C0215" d="To kibitzers"/>
-  <m i="C0216" d="Use emoticons in chat"/>
-  <m i="C0300" d="Enable sound for:"/>
-  <m i="C0301" d="Enable voice for:"/>
-  <m i="C0302" d="Select the sound effects that you would like to hear by clicking on the list above. Sound effects will be enabled for all events that appear in blue in the list above. You can alter the sound effects that an event produces by changing the files in:"/>
-  <m i="C0303" d="Friend log in"/>
-  <m i="C0400" d="Bridge diagram colors"/>
-  <m i="C0401" d="Felt background"/>
-  <m i="C0402" d="Other colors"/>
-  <m i="C0403" d="Restore my colors"/>
-  <m i="C0500" d="A live vugraph broadcast has just started."/>
-  <m i="C0501" d="Notify me through chat when a vugraph match starts"/>
-  <m i="C0502" d="A list of your friends who are logged in will appear in this area. Click your right mouse button on another member's name to define that person as your friend."/>
-  <m i="C0503" d="To use this area to display members who are logged in who are not your friends, click the "/>
-  <m i="C0504" d="Home"/>
-  <m i="C0505" d="Back"/>
-  <m i="C0506" d="Seeking a game"/>
-  <m i="C0507" d="Seekers"/>
-  <m i="C0508" d="{1} is seeking a game"/>
-  <m i="C0509" d="Show members who are seeking a game"/>
-  <m i="C0510" d="Show seekers"/>
-  <m i="C0511" d="Select members to display"/>
-  <m i="C0512" d="Show all members"/>
-  <m i="C0513" d="Show only you"/>
-  <m i="C0514" d="Show only {1} members"/>
-  <m i="C0600" d="Click to return to top level menu"/>
-  <m i="C0601" d="Click to return to previous screen"/>
-  <m i="C0602" d="Click to select display options"/>
-  <m i="C0700" d="In order to choose which members appear in this area, click "/>
-  <m i="C0701" d="Members in this"/>
-  <m i="C0702" d="color"/>
-  <m i="C0703" d="are here to help you. Left click to send a private chat message."/>
-  <m i="C0704" d="are your friends. Right click to define a member as your friend. "/>
-  <m i="C1000" d="Profile"/>
-  <m i="C1001" d="General"/>
-  <m i="C1002" d="At a table"/>
-  <m i="C1003" d="Colors"/>
-  <m i="C2000" d="{1} Players"/>
-  <m i="C2001" d="{1} Displayed"/>
-  <m i="C2002" d="{1} Tables"/>
-  <m i="C2003" d="1 Table"/>
-  <m i="C2004" d="{1} Tournaments"/>
-  <m i="C2005" d="This {1} is about to start."/>
-  <m i="C2006" d="About to start"/>
-  <m i="C2007" d="There are no running or pending tournaments of the type you selected."/>
-  <m i="C2008" d="Upcoming Broadcasts"/>
-  <m i="C2009" d="Vugraph schedule web page"/>
-  <m i="C2010" d="Create new vugraph table"/>
-  <m i="C2011" d="1 Player"/>
-  <m i="C2020" d="Click to show list of who is online"/>
-  <m i="C2021" d="Click to show list of tables"/>
-  <m i="C2022" d="Click to show list of tournaments"/>
-  <m i="C2030" d="Click to hide list of who is online"/>
-  <m i="C2031" d="Click to hide list of tables"/>
-  <m i="C2032" d="Click to hide list of tournaments"/>
-  <m i="C2040" d="Click to set options for lobby list"/>
-  <m i="C2041" d="Click to set options for table list"/>
-  <m i="C2050" d="Click to hide options for lobby list"/>
-  <m i="C2051" d="Click to hide options for table list"/>
-  <m i="C2052" d="Show all tables"/>
-  <m i="C2053" d="Show empty list"/>
-  <m i="C2054" d="Select tables to display"/>
-  <m i="F2000" d="Test"/>
-  <m i="W1000" d="Test "/>
-  <m i="W1001" d=""/>
+  <m i="M0117" d=""/>
+  <m i="M0118" d=""/>
   <m i="MA000" d="ACBL Masterpoint Tournaments"/>
   <m i="MA001" d="Add BB$ to your BB$ account using PayPal"/>
   <m i="MA002" d="Add BB$ to your BB$ account using SWREG"/>
@@ -2096,6 +2055,79 @@
   <m i="MA119" d="Enter BBO Store to access educational Bridge content"/>
   <m i="MA120" d="About BBO Store"/>
   <m i="MA121" d="Authors - Create your own bridge movie here"/>
+  <m i="MO000" d="Log in to BBO"/>
+  <m i="MO001" d="Play Anonymously"/>
+  <m i="MO002" d="Watch Anonymously"/>
+  <m i="MO003" d="Tell a friend"/>
+  <m i="MO004" d="Notify me when vugraph starts"/>
+  <m i="MO005" d="Show Results"/>
+  <m i="MO006" d="Hide Results"/>
+  <m i="MO007" d="Show Chat"/>
+  <m i="MO008" d="Show Details"/>
+  <m i="MO009" d="Hide Details"/>
+  <m i="MO010" d="Available"/>
+  <m i="MO011" d="Unavailable"/>
+  <m i="MO012" d="Disallowed"/>
+  <m i="MO013" d="Skill"/>
+  <m i="MO014" d="{1} at my table"/>
+  <m i="MO015" d="Listen"/>
+  <m i="MO016" d="BBO News Headlines"/>
+  <m i="MO017" d="I concede 1 trick."/>
+  <m i="MO018" d="I concede {1} tricks."/>
+  <m i="MO019" d="Privacy"/>
+  <m i="MO020" d="Kibitzers can chat with players"/>
+  <m i="MO021" d="Start competitive table"/>
+  <m i="MO022" d="Start relaxed table"/>
+  <m i="MO023" d="Register (free!)"/>
+  <m i="MO024" d="Register as a member"/>
+  <m i="MO025" d="Show NS convention card"/>
+  <m i="MO026" d="Show EW convention card"/>
+  <m i="MO027" d="Review the bidding"/>
+  <m i="MO028" d="Review last trick"/>
+  <m i="MO029" d="Withdraw from tournament"/>
+  <m i="MO030" d="wishes to kibitz"/>
+  <m i="MO031" d="wishes to sit {1}"/>
+  <m i="MO032" d="Claim of {1} tricks accepted"/>
+  <m i="MO033" d="Joining table. Please wait..."/>
+  <m i="MO034" d="Connecting to BBO. Please wait..."/>
+  <m i="MO035" d="Registering. Please wait..."/>
+  <m i="MO036" d="Error creating user ID"/>
+  <m i="MO037" d="Connection lost. Please try again."/>
+  <m i="MO038" d="Connection failed. Please try again."/>
+  <m i="MO039" d="Connection refused. Please try again."/>
+  <m i="MO040" d="Tournament hands not available"/>
+  <m i="MO041" d="Board details not available"/>
+  <m i="MO042" d="Other table results not available"/>
+  <m i="MO043" d="No recent hands available"/>
+  <m i="MO044" d="Loading tournament hands. Please wait..."/>
+  <m i="MO045" d="Loading recent hands. Please wait..."/>
+  <m i="MO046" d="Loading recent tournaments. Please wait..."/>
+  <m i="MO047" d="No recent tournaments available."/>
+  <m i="MO048" d="To"/>
+  <m i="MO049" d="Bigger chat"/>
+  <m i="MO050" d="Smaller chat"/>
+  <m i="MO051" d="Tournament registration"/>
+  <m i="MO052" d="Request in progress"/>
+  <m i="MO053" d="Your partner in this tournament will be a robot."/>
+  <m i="MO054" d="Getting mail. Please wait..."/>
+  <m i="MO055" d="Your mailbox is empty"/>
+  <m i="MO056" d="No tables were found. Please try again later."/>
+  <m i="MO057" d="Sent"/>
+  <m i="MO058" d="I may pay for my partner"/>
+  <m i="MO059" d="I will pay only for myself"/>
+  <m i="MO060" d="Partner must pay for me"/>
+  <m i="MO061" d="IMP Tournaments"/>
+  <m i="MO062" d="Matchpoint Tournaments"/>
+  <m i="MO063" d="Total Point Tournaments"/>
+  <m i="MO064" d="{1} Online {2} Tables"/>
+  <m i="MO065" d="1 Registered player"/>
+  <m i="MO066" d="{1} Registered players"/>
+  <m i="MO067" d="1 Registered pair"/>
+  <m i="MO068" d="{1} Registered pairs"/>
+  <m i="MO069" d="Currently nobody has registered for this tournament"/>
+  <m i="MO070" d="Play in a tournament"/>
+  <m i="MO115" d=""/>
+  <m i="MO116" d=""/>
   <m i="V0000" d="Redeal"/>
   <m i="V0001" d="Undo"/>
   <m i="V0002" d="NS CC"/>
@@ -2850,6 +2882,8 @@
   <m i="V0751" d="Just Play Bridge (Free)"/>
   <m i="V0752" d="Special honors"/>
   <m i="V0753" d="Compatibility"/>
+  <m i="V0754" d="Attach deal"/>
+  <m i="V0755" d="Post"/>
   <m i="V1000" d="Account Balance:"/>
   <m i="V1001" d="There is no member with that username"/>
   <m i="V1002" d="Mail delivered:"/>
@@ -2891,4 +2925,165 @@
   <m i="V1038" d="Robot"/>
   <m i="V1039" d="Unknown"/>
   <m i="V1040" d="Your BBO app is out of date or unauthorized. Please use the latest official app. Search for Bridge Base in the app store."/>
+  <m i="V1041" d="Privacy Settings"/>
+  <m i="V1042" d="Who can see my stuff?"/>
+  <m i="V1043" d="Who can see my list of friends?"/>
+  <m i="V1044" d="Who can see my real name?"/>
+  <m i="V1045" d="Who can see my real location?"/>
+  <m i="V1046" d="Who can contact me?"/>
+  <m i="V1047" d="Who can send me messages?"/>
+  <m i="V1048" d="Who can invite me to play?"/>
+  <m i="V1049" d="Who can search for me?"/>
+  <m i="V1050" d="Who can search for me using my real name or email address?"/>
+  <m i="V1051" d="Close"/>
+  <m i="V1052" d="Friends"/>
+  <m i="V1053" d="Friends of friends"/>
+  <m i="V1054" d="Trusted/Veteran BBOers"/>
+  <m i="V1055" d="Anyone"/>
+  <m i="V1056" d="Privacy Settings"/>
+  <m i="V1057" d="Manage the players I follow and ignore"/>
+  <m i="V1058" d="Followings"/>
+  <m i="V1059" d="Ignores"/>
+  <m i="V1060" d="Notify me when a player I'm following logs in"/>
+  <m i="V1061" d="Following"/>
+  <m i="V1062" d="Ignore"/>
+  <m i="V1063" d="You cannot add yourself to the list of players you follow or ignore."/>
+  <m i="V1064" d="Include players followed by the host"/>
+  <m i="V1065" d="Exclude players ignored by the host"/>
+  <m i="V1066" d="Follow {1}"/>
+  <m i="V1067" d="Ignore {1}"/>
+  <m i="V1068" d="Who can see the players I'm following?"/>
+  <m i="V1069" d="My friends"/>
+  <m i="V1070" d="Stop notifications from players I'm following"/>
+  <m i="V1071" d="Start notifications from players I'm following"/>
+  <m i="V1072" d="None of the players you're following are currently playing in this bridge club."/>
+  <m i="V1073" d="Friends"/>
+  <m i="V1074" d="Following"/>
+  <m i="V1075" d="Follow"/>
+  <m i="V1076" d="Ignore"/>
+  <m i="V1077" d="Following me (My friend)"/>
+  <m i="V1078" d="None of your friends are online. As you add friends they will show up here when they're online."/>
+  <m i="V1098" d="Swiss Team"/>
+  <m i="V1099" d="VP 20"/>
+  <m i="V1100" d="VP 30"/>
+  <m i="V1101" d="You and {1} are registered to play in this tournament with {2} and {3}."/>
+  <m i="V1102" d="We'll match you up with another pair when the tournament starts. {1} is responsible for finding teammates."/>
+  <m i="V1103" d="Registered Teams"/>
+  <m i="V1104" d="You are in a pair with {1}."/>
+  <m i="V1105" d="Select Teammates"/>
+  <m i="V1106" d="Dissolve Team"/>
+  <m i="V1107" d="Select your teammates"/>
+  <m i="V1108" d="Player"/>
+  <m i="V1109" d="Invite"/>
+  <m i="V1110" d="Pairs looking for teammates"/>
+  <m i="V1111" d="You are paired with {1}; {2} is responsible for finding teammates."/>
+  <m i="V1112" d="Show registered (but available) pairs"/>
+  <m i="V1113" d="Final Score"/>
+  <m i="V1114" d="Victory Points"/>
+  <m i="V1115" d="Round"/>
+  <m i="V1116" d="VP"/>
+  <m i="V1117" d="20 Victory Points Scale"/>
+  <m i="V1118" d="30 Victory Points Scale"/>
+  <m i="V1119" d="JCBL Bridge Club"/>
+  <m i="V1120" d="JCBL Website"/>
+  <m i="V1121" d="Privacy Policy"/>
+  <m i="V1122" d="MSN Games Bridge Club"/>
+  <m i="V1123" d="The WP Refugees' Bridge Club (public)"/>
+  <m i="V1124" d="The Total Points Tournament Bridge Club (public)"/>
+  <m i="V1125" d="The Acol Bridge Club (public)"/>
+  <m i="V1126" d="MSN Privacy Policy"/>
+  <m i="V1127" d="seconds ago."/>
+  <m i="V1128" d="yesterday."/>
+  <m i="V1129" d="minute ago."/>
+  <m i="V1130" d="minutes ago."/>
+  <m i="V1131" d="hour ago."/>
+  <m i="V1132" d="hours ago."/>
+  <m i="V1133" d="My newsfeed"/>
+  <m i="V1134" d="Topic"/>
+  <m i="V1135" d="Unable to retrieve feed. "/>
+  <m i="V1136" d="Unable to add post."/>
+  <m i="V1137" d="Unable to perform action."/>
+  <m i="V1138" d="Refreshing your newsfeed."/>
+  <m i="V1139" d="Unable to add comment."/>
+  <m i="V1140" d="Delete"/>
+  <m i="V1141" d="Hide Post"/>
+  <m i="V1142" d="Hide Author"/>
+  <m i="V1143" d="Report Abuse"/>
+  <m i="V1144" d="Hide"/>
+  <m i="V1145" d="Link"/>
+  <m i="V1146" d="Friends"/>
+  <m i="V1147" d="Followers"/>
+  <m i="V1148" d="Public"/>
+  <m i="V1149" d="Start a new topic."/>
+  <m i="V2001" d="Internal error. Please try again later."/>
+  <m i="V2002" d="You do not have enough BB$ to complete this transaction. "/>
+  <m i="V2003" d="Error. You are already registered with another team."/>
+  <m i="V2004" d="Error. Your partner has not agreed to pay."/>
+  <m i="W0000" d="Scheduled Vugraphs"/>
+  <m i="W0001" d="Hands played by {1} since {2} to {3}"/>
+  <m i="W0002" d="No data found."/>
+  <m i="W0003" d="N/A"/>
+  <m i="W0004" d="Time"/>
+  <m i="W0005" d="North"/>
+  <m i="W0006" d="South"/>
+  <m i="W0007" d="East"/>
+  <m i="W0008" d="West"/>
+  <m i="W0009" d="Result"/>
+  <m i="W0010" d="Points"/>
+  <m i="W0011" d="Score"/>
+  <m i="W0012" d="Movie"/>
+  <m i="W0013" d="Traveller"/>
+  <m i="W0014" d="Tourney {1}"/>
+  <m i="W0015" d="Traveller {1}"/>
+  <m i="W0016" d="Board {1} Traveller"/>
+  <m i="W0017" d="{1} Average"/>
+  <m i="W0018" d="{1} Total"/>
+  <m i="W0019" d="{1} Hands"/>
+  <m i="W0020" d="Grand Total"/>
+  <m i="W0021" d="Home"/>
+  <m i="W0022" d="Vugraph Schedule"/>
+  <m i="W0023" d="Hand Records"/>
+  <m i="W0024" d="BBO Points"/>
+  <m i="W0025" d="All rights reserved"/>
+  <m i="W0026" d="Invalid input. Please use"/>
+  <m i="W0027" d="Get hands played by a user between two dates"/>
+  <m i="W0028" d="Enter username:"/>
+  <m i="W0029" d="Enter the start date:"/>
+  <m i="W0030" d="Interval to retrieve:"/>
+  <m i="W0031" d="Interval direction:"/>
+  <m i="W0032" d="Backward"/>
+  <m i="W0033" d="Forward"/>
+  <m i="W0034" d="Show summaries every:"/>
+  <m i="W0035" d="Get hands"/>
+  <m i="W0036" d="Reset"/>
+  <m i="W0037" d="day(s)"/>
+  <m i="W0038" d="week(s)"/>
+  <m i="W0039" d="month(s)"/>
+  <m i="W0041" d="BBO Points"/>
+  <m i="W0042" d="All years"/>
+  <m i="W0043" d="All months"/>
+  <m i="W0044" d="Get listing"/>
+  <m i="W0045" d="Board {1} traveller"/>
+  <m i="W0046" d="What's this?"/>
+  <m i="W0047" d="Organization"/>
+  <m i="W0048" d="Total"/>
+  <m i="W0049" d="in tourneys of"/>
+  <m i="W0050" d="Year"/>
+  <m i="W0051" d="Month"/>
+  <m i="W0052" d="in"/>
+  <m i="W0053" d="Tourney time"/>
+  <m i="W0054" d="Leaders"/>
+  <m i="W0055" d="Rank"/>
+  <m i="W0056" d="Username"/>
+  <m i="W0058" d="this page"/>
+  <m i="W0059" d="denotes required field"/>
+  <m i="W0060" d="Don't show"/>
+  <m i="W0061" d="Recently played tournaments"/>
+  <m i="W0062" d="Please enter a valid username"/>
+  <m i="W0063" d="Username not valid"/>
+  <m i="W1000" d="Please tell us about yourself"/>
+  <m i="W1001" d="Please help us improve your BBO experience"/>
+  <m i="W1002" d="More information (in English)"/>
+  <m i="W1003" d="Year of Birth?"/>
+  <m i="W1004" d="Year you were born"/>
 </lang>

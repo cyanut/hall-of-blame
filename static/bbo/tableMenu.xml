@@ -4,12 +4,13 @@
 		<listItem xlate="V0059" label="Interesting tables" type="table_list" interest="kibitz" id="interesting"/>	   
 		<list label="List all tables" xlate="V0513" stats="y" id="browse">
 			<listItem label="MSN Games Bridge Club" type="table_list" manager="zonemgr" full="n" affil="msn" stats="af"/>				
+			<listItem label="JCBL Bridge Club C" type="table_list" manager="jcbl" full="n" affil="jcbl" stats="af"/>				
 			<listItem xlate="AC010" label="Main Bridge Club" type="table_list" manager="~bbo~mbc" full="n" stats="mbc" box_title="All tables" box_title_xlate="V0506"/>
 		    <listItem xlate="MA095" label="Relaxed Bridge Club" type="table_list" manager="bbo~si" full="n" stats="rbc"/>		 
 		    <list xlate="V0075" label="All Public and Private Clubs" stats="ac">		    		        
-		    	<listItem label="The WP Refugees' Bridge Club (public)" type="table_list" manager="mikefofva" full="n"/>
-		    	<listItem label="The Total Points Tournament Bridge Club (public)" type="table_list" manager="TotalPoint" full="n"/>		        
-		    	<listItem label="The Acol Bridge Club (public)" type="table_list" manager="aacol" full="n"/>		        
+		    	<listItem xlate="V1123" label="The WP Refugees' Bridge Club (public)" type="table_list" manager="mikefofva" full="n"/>
+		    	<listItem xlate="V1124" label="The Total Points Tournament Bridge Club (public)" type="table_list" manager="TotalPoint" full="n"/>		        
+		    	<listItem xlate="V1125" label="The Acol Bridge Club (public)" type="table_list" manager="aacol" full="n"/>		        
 		        <listItem xlate="V0076" label="All Public Clubs" type="club_list" clubs="public"/>
 				<listItem xlate="V0077" label="All Private Clubs" type="club_list" clubs="private"/>
 		    </list>									

@@ -22,7 +22,7 @@ app.config['SECRET_KEY'] = 'hahaha'
 socketio = SocketIO(app)
 
 
-SRV_ADDR="192.155.229.163"
+SRV_ADDR="50.22.39.6"
 PORT = 3336
 q = Queue()
 
@@ -152,8 +152,10 @@ def bbo_proxy(fname, data):
 
 @app.route('/languages/<fname>.xml', defaults={"ftype":"xml"})
 @app.route('/config/default/<fname>.xml', defaults={"ftype":"xml"})
+@app.route('/application/modules/<dummy>/<fname>.swf', defaults={"ftype":"swf"})
 @app.route('/<fname>.swf', defaults={"ftype":"swf"})
-def bbo_static(fname, ftype):
+def bbo_static(fname, ftype, dummy=""):
+    print("get file %s", fname)
     return app.send_static_file("bbo/{}.{}".format(fname, ftype))
 
 

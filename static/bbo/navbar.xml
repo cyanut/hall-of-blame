@@ -8,6 +8,7 @@
 			<listItem xlate="V0257" label="Big cards" type="big_cards" id="big_cards" />
 			<listItem xlate="V0054" label="Bigger chat font" type="bigger_chat" id="bigger_chat" />			
 			<listItem xlate="V0055" label="Smaller chat font" type="smaller_chat" id="smaller_chat" />
+			<!--  <listItem xlate="V1056" label="Privacy" type="openPrivacyDialog"/>  -->
 			<listItem xlate="C0004" label="More options..." type="options"/>
 			<listItem xlate="V0621" label="Teaching options..." type="teaching" table="y" table_type="4" table_host="y"/>
 		</list>		
@@ -21,7 +22,7 @@
 			<listItem xlate="V0060" label="User profile" type="profile" allow_anon="n"/>
 			<listItem xlate="V0061" label="Hands and results" type="myhands" allow_anon="n" />
 			<listItem xlate="AH001" label="Convention cards" type="convcardman" allow_anon="n"/>					
-			<listItem xlate="AB200" label="Manage friends and enemies" type="friends" allow_anon="n"/>	
+			<listItem xlate="V1057" label="Manage friends and enemies" type="friends" allow_anon="n"/>	
 			<listItem xlate="V0062" label="Mailbox" type="mailbox" allow_anon="n"/>	
 			<listItem xlate="V0495" label="Chat Manager" type="chatwidget" allow_anon="n"/>
 		</list>
@@ -34,7 +35,7 @@
 			<listItem xlate="MA104" label="The Rules of This Site" type="urlpopup" url="http://online.bridgebase.com/v2/doc_rules.html"/>  
 			<listItem xlate="V0066" label="Terms of service" type="urlpopup" url="http://online.bridgebase.com/v2/tcm.html"/>
 			<listItem xlate="V0102" label="BBO Privacy policy" type="urlpopup" url="http://www.bridgebase.com/intro/privacy.php"/>
-			<listItem label="MSN Privacy Policy" type="urlnew" url="http://g.msn.com/0PR_/enus" affil="msn"/>
+			<listItem xlate="V1126" label="MSN Privacy Policy" type="urlnew" url="http://g.msn.com/0PR_/enus" affil="msn"/>
 			<listItem type="separator"/>			
 			<listItem xlate="V0099" label="Learn more about BBO" type="urlpopup" url="http://online.bridgebase.com/v2/about.html"/>			
 			<listItem xlate="V0067" label="About BBO" type="about_bbo"/>  

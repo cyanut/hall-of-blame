@@ -69,4 +69,5 @@
 	<bridge_master_help url="http://www.bridgebase.com/help/v2help/Bridge_Master_Help.html"/>
 	<help_instant_tourney url="http://online.bridgebase.com/v2/about_IT.html"/>
 	<pard_desk_details url="http://webutil.bridgebase.com/v2/pd_ps.php"/>
+	<friendsList url="http://webutil.bridgebase.com/v2/f_tflist.php" />
 </bbourls>
