@@ -8,6 +8,7 @@ from trainer import process_game_packet
 SRV_ADDR = "192.155.229.164"
 PORT = 3336
 TEST = False
+data_worker = None
 
 
 class Listener(object):
@@ -77,7 +78,7 @@ def manage_conn(cli, srv, q):
         rl, wl, el = select([cli, srv], [], [])
         for rs in rl:
             msg_raw = rs.recv(4096)
-            print("---raw---", repr(msg_raw))
+            #print("---raw---", repr(msg_raw))
             if not msg_raw:
                 live = False
                 continue

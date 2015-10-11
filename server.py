@@ -9,7 +9,7 @@ from threading import Thread
 
 from flask import Flask, request, render_template, abort
 from flask.ext.socketio import SocketIO, emit
-#from proxy import proxy, proxy_request, request
+import proxy#, proxy, request
 from listener import Listener
 import pprint
 import json
@@ -18,8 +18,11 @@ import time
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hahaha'
+app.debug = True
 #app.config['SERVER_NAME'] = 'my.cyansite.cc'
 socketio = SocketIO(app)
+
+#app.register_blueprint(proxy)
 
 
 SRV_ADDR="50.22.39.6"
@@ -29,9 +32,6 @@ q = Queue()
 listener = None
 updater = None
 res_buff = []
-#FIXME
-import test_data
-res_buff = test_data.game_res
 
 
 def jinja_render_template(template, **context):
@@ -81,13 +81,16 @@ def format_data(data):
 
 def get_data():
     global listener
+    global res_buff
     while listener is None or listener.running:
+        print("*************", q.qsize(), len(res_buff))
         data = q.get(block=True)
         res_buff.append(data)
         socketio.emit("data", format_data(data), namespace='/poll')
 
 @socketio.on('connect', namespace='/poll')
 def connect():
+    global res_buff
     print("hihi")
     for data in res_buff:
         emit("data", format_data(data))
@@ -98,6 +101,7 @@ def connect():
 #@app.route('/poll', methods=["GET", "POST"])
 def poll():
     global q
+    global res_buff
     res = []
     board_list = request.form.get('boards', None)
     if board_list is None:
@@ -109,6 +113,8 @@ def poll():
     print(board_list)
     board_list = set(board_list)
 
+    print("requested board_list =", board_list)
+    print("len(res_buff) =", len(res_buff))
     for data in res_buff:
         if not data['board_num'] in board_list:
             res.append(data)
@@ -158,6 +164,12 @@ def bbo_static(fname, ftype, dummy=""):
     print("get file %s", fname)
     return app.send_static_file("bbo/{}.{}".format(fname, ftype))
 
+
+@app.route('/proxy/<host>/', methods=["GET","POST", "PUT", "DELETE"])
+@app.route('/proxy/<host>/<path:file>', methods=["GET","POST", "PUT", "DELETE"])
+def proxy_request(host, file=""):
+    resp = proxy.proxy_request(host, file)
+    return resp.data
 
 
 if __name__ == "__main__":
