@@ -26,6 +26,7 @@ socketio = SocketIO(app)
 
 
 SRV_ADDR="50.22.39.6"
+WEB_SRV_ADDR="www.bridgebase.com"
 PORT = 3336
 q = Queue()
 
@@ -155,21 +156,27 @@ def bbo_proxy(fname, data):
     return proxy_request(request, SRV_ADDR, "{}{}?{}".format(fname,".php", data))
 '''
 
-
-@app.route('/languages/<fname>.xml', defaults={"ftype":"xml"})
-@app.route('/config/default/<fname>.xml', defaults={"ftype":"xml"})
-@app.route('/application/modules/<dummy>/<fname>.swf', defaults={"ftype":"swf"})
-@app.route('/<fname>.swf', defaults={"ftype":"swf"})
-def bbo_static(fname, ftype, dummy=""):
-    print("get file %s", fname)
-    return app.send_static_file("bbo/{}.{}".format(fname, ftype))
-
-
 @app.route('/proxy/<host>/', methods=["GET","POST", "PUT", "DELETE"])
 @app.route('/proxy/<host>/<path:file>', methods=["GET","POST", "PUT", "DELETE"])
 def proxy_request(host, file=""):
     resp = proxy.proxy_request(host, file)
     return resp.data
+
+
+'''
+@app.route('/languages/<fname>.xml', defaults={"ftype":"xml"})
+@app.route('/config/default/<fname>.xml', defaults={"ftype":"xml"})
+@app.route('/application/modules/<dummy>/<fname>.swf', defaults={"ftype":"swf"})
+@app.route('/<fname>.swf', defaults={"ftype":"swf"})
+def bbo_static(fname, ftype, dummy=""):
+'''
+@app.route('/<path:fname>', methods=["GET","POST","PUT","DELETE"])
+def bbo_static(fname):
+    print("get file %s", fname)
+    #return app.send_static_file("bbo/{}.{}".format(fname, ftype))
+    return proxy_request(WEB_SRV_ADDR, fname)
+
+
 
 
 if __name__ == "__main__":

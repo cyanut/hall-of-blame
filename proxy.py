@@ -60,7 +60,7 @@ def proxy_request(host, file=""):
     #print("F: '{}'".format(file))
     # Whitelist a few headers to pass on
     request_headers = {}
-    for h in ["Cookie", "Referer", "X-Csrf-Token"]:
+    for h in ["Cookie", "Referer", "X-Csrf-Token", "Accept", "Accept_Language", "Content-Type", "Dnt"]:
         if h in request.headers:
             request_headers[h] = request.headers[h]
 
@@ -133,6 +133,13 @@ def proxy_request(host, file=""):
         # Generic HTTP.
         for regex in REGEXES:
            contents = regex.sub(b'\\1' + root.encode("utf-8"), contents)
+
+    print("********Headers********")
+    print(request.headers)
+    print(request_headers)
+    print("********Contents********")
+    print(response_headers)
+    print(contents)
 
     flask_response = Response(response=contents,
                               status=resp.status,

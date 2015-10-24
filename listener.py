@@ -111,7 +111,7 @@ def manage_conn(cli, srv, q):
                 else:
                     source = "S"
 
-                print(source,"=>", repr(msg))
+                #print(source,"=>", repr(msg))
                 target.send(msg + b"\x00")
                 if q:
                     #login info
