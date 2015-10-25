@@ -7,6 +7,7 @@ except ImportError:
 import ctypes
 import re
 from xml.dom import minidom
+import traceback
 
 
 suit_table = {"S":0, "H":1, "D":2, "C":3, "NT":4, "N":4}
@@ -181,10 +182,11 @@ def node_to_dict(node):
     return res
 
 def find_owner(deal, card):
-    suit_num = suit_table[card[0]]
-    for seat, hand in deal.items():
-        if card[1] in hand[suit_num][1]:
-            return seat
+    if card:
+        suit_num = suit_table[card[0]]
+        for seat, hand in deal.items():
+            if card[1] in hand[suit_num][1]:
+                return seat
     print(deal, card)
     return None
     
@@ -263,6 +265,7 @@ def format_board_res(packet_xml):
         #lead player is LHO declarer
         game_result["deal"]["lead_player"] = seat_table[(declarer + 1) % 4]
         game_result["analysis"] = {}
+        print(game_result)
         game_result["analysis"]["play_tricks"] = analyze_play(\
             game_result["deal"]["pbn"],
             game_result["play"]["cards"].replace(" ", ""),
@@ -273,34 +276,40 @@ def format_board_res(packet_xml):
         play_tricks = game_result["analysis"]["play_tricks"]
         play_diff = [x[1]-x[0] for x in zip(play_tricks[:-1], play_tricks[1:])]
         play_cards = game_result["play"]["cards"].split(" ")
-        play_owner = [hand_table[find_owner(game_result["deal"]["all"], x)] for x in play_cards]
-        play_seq = []
-        print(len(play_cards), len(play_owner), len(play_diff), len(play_tricks))
-        #input()
-        for i in range(0, len(play_cards), 4):
-            play_seq.append(sorted(list(zip(play_cards[i:i+4], 
-                                     play_owner[i:i+4],
-                                     play_diff[i:i+4],
-                                     [True, False, False, False])), key=lambda x:x[1]))#is lead?
-        game_result["analysis"]["play_anotated"] = play_seq
-        correct_play = get_correct_play(game_result['deal']['all'],
-                                        game_result["deal"]['trump'],
-                                        play_cards,
-                                        play_owner,
-                                        play_diff)
-        #convert side trick number to declarer trick number
-        for k, v in correct_play.items():
-            is_defence = v[1] % 2 ^ declarer % 2
-            if is_defence == 0:
-                is_defence = -1
-            # is_defence is 1 or -1
 
-            max_trick = max([x[1] for x in v[0]])
-            for card in v[0]:
-                card[1] = "{:+d}".format((max_trick - card[1]) * is_defence)
+        if play_cards and play_cards[0]:
+            print("play cards", play_cards)
 
-        game_result["deal"]["correct_play"] = correct_play
-                                        
+            play_owner = [hand_table[find_owner(game_result["deal"]["all"], x)] for x in play_cards]
+            play_seq = []
+            print(len(play_cards), len(play_owner), len(play_diff), len(play_tricks))
+            #input()
+            for i in range(0, len(play_cards), 4):
+                play_seq.append(sorted(list(zip(play_cards[i:i+4], 
+                                         play_owner[i:i+4],
+                                         play_diff[i:i+4],
+                                         [True, False, False, False])), key=lambda x:x[1]))#is lead?
+            game_result["analysis"]["play_anotated"] = play_seq
+            correct_play = get_correct_play(game_result['deal']['all'],
+                                            game_result["deal"]['trump'],
+                                            play_cards,
+                                            play_owner,
+                                            play_diff)
+            #convert side trick number to declarer trick number
+            for k, v in correct_play.items():
+                is_defence = v[1] % 2 ^ declarer % 2
+                if is_defence == 0:
+                    is_defence = -1
+                # is_defence is 1 or -1
+
+                max_trick = max([x[1] for x in v[0]])
+                for card in v[0]:
+                    card[1] = "{:+d}".format((max_trick - card[1]) * is_defence)
+
+            game_result["deal"]["correct_play"] = correct_play
+                                            
+        else:
+            game_result["deal"]["correct_play"] = []
         
         #parse result
         result = [game_result["deal"]["contract"]]
@@ -350,7 +359,8 @@ def process_game_packet(packet, q):
 
     try:
         packet_xml = minidom.parseString(packet)
-    except:
+    except Exception as e:
+        print(traceback.format_exc())
         print(packet)
         #input()
         return

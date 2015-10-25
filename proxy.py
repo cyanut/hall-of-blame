@@ -134,12 +134,14 @@ def proxy_request(host, file=""):
         for regex in REGEXES:
            contents = regex.sub(b'\\1' + root.encode("utf-8"), contents)
 
+    '''
     print("********Headers********")
     print(request.headers)
     print(request_headers)
     print("********Contents********")
     print(response_headers)
     print(contents)
+    '''
 
     flask_response = Response(response=contents,
                               status=resp.status,
