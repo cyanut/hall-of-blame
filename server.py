@@ -14,6 +14,8 @@ from listener import Listener
 import pprint
 import json
 import time
+import os
+import re
 
 
 app = Flask(__name__)
@@ -27,6 +29,7 @@ socketio = SocketIO(app)
 
 SRV_ADDR="50.22.39.6"
 WEB_SRV_ADDR="www.bridgebase.com"
+WEB_SRV_ROOT="/client/client_v48q2"
 PORT = 3336
 q = Queue()
 
@@ -172,9 +175,17 @@ def bbo_static(fname, ftype, dummy=""):
 '''
 @app.route('/<path:fname>', methods=["GET","POST","PUT","DELETE"])
 def bbo_static(fname):
-    print("get file %s", fname)
+    print("get file %s" %(fname,))
+    client_regex = [r"languages/.*\.xml", r"config/default/.*\.xml",
+                    r"application/modules/.*\.swf", 
+                    r"[^/]*\.swf"]
+    root = ""
+    for reg in client_regex:
+        if re.match(reg, fname):
+            root = WEB_SRV_ROOT
+
     #return app.send_static_file("bbo/{}.{}".format(fname, ftype))
-    return proxy_request(WEB_SRV_ADDR, fname)
+    return proxy_request(WEB_SRV_ADDR, os.path.join(root, fname))
 
 
 

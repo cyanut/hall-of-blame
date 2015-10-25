@@ -27,12 +27,13 @@ proxy = Blueprint('proxy', __name__)
 #proxy.before_request(check_login)
 
 # Filters
-HTML_REGEX = re.compile(b'((?:src|action|href)=["\'])/')
-JQUERY_REGEX = re.compile(b'(\$\.(?:get|post)\(["\'])/')
-JS_LOCATION_REGEX = re.compile(b'((?:window|document)\.location.*=.*["\'])/')
-CSS_REGEX = re.compile(b'(url\(["\']?)/')
+HTML_REGEX = re.compile(b'((?:src|action|href)=["\'])(?:https?://)?')
+JQUERY_REGEX = re.compile(b'(\$\.(?:get|post)\(["\'])(?:https?://)?')
+JS_LOCATION_REGEX = re.compile(b'((?:window|document)\.location.*=.*["\'])(?:https?://)?')
+CSS_REGEX = re.compile(b'(url\(["\']?(?:https?://)?)')
+XML_REGEX = re.compile(b'(url=["\'])http://')
 
-REGEXES = [HTML_REGEX, JQUERY_REGEX, JS_LOCATION_REGEX, CSS_REGEX]
+REGEXES = [HTML_REGEX, JQUERY_REGEX, JS_LOCATION_REGEX, CSS_REGEX, XML_REGEX]
 
 
 def iterform(multidict):
@@ -118,7 +119,9 @@ def proxy_request(host, file=""):
 
     # Rewrite URLs in the content to point to our URL schemt.method == " instead.
     # Ugly, but seems to mostly work.
-    root = url_for(".proxy_request", host=host)
+    root = url_for(".proxy_request", host='')
+    root = root[:-1]
+    print("root", root)
     contents = resp.read()
 
     # Restructing Contents.
@@ -134,14 +137,13 @@ def proxy_request(host, file=""):
         for regex in REGEXES:
            contents = regex.sub(b'\\1' + root.encode("utf-8"), contents)
 
-    '''
     print("********Headers********")
+    print(request.method, path, form_data)
     print(request.headers)
     print(request_headers)
     print("********Contents********")
     print(response_headers)
     print(contents)
-    '''
 
     flask_response = Response(response=contents,
                               status=resp.status,
