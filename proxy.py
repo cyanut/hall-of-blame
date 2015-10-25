@@ -121,7 +121,6 @@ def proxy_request(host, file=""):
     # Ugly, but seems to mostly work.
     root = url_for(".proxy_request", host='')
     root = root[:-1]
-    print("root", root)
     contents = resp.read()
 
     # Restructing Contents.
@@ -137,6 +136,7 @@ def proxy_request(host, file=""):
         for regex in REGEXES:
            contents = regex.sub(b'\\1' + root.encode("utf-8"), contents)
 
+    '''
     print("********Headers********")
     print(request.method, path, form_data)
     print(request.headers)
@@ -144,6 +144,7 @@ def proxy_request(host, file=""):
     print("********Contents********")
     print(response_headers)
     print(contents)
+    '''
 
     flask_response = Response(response=contents,
                               status=resp.status,

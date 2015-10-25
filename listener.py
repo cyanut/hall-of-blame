@@ -112,7 +112,7 @@ def manage_conn(cli, srv, q):
                 else:
                     source = "S"
 
-                print(source,"=>", repr(msg))
+                #print(source,"=>", repr(msg))
                 target.send(msg + b"\x00")
                 if q:
                     #login info
@@ -127,7 +127,7 @@ def manage_conn(cli, srv, q):
                         print("selecting user name", uname)
 
                     elif msg.startswith(b"<sc_board") and uname in msg:
-                        print(msg)
+                        #print(msg)
                         data_worker = Thread(\
                                 target = process_game_packet, 
                                 args = (msg, q))
@@ -135,7 +135,7 @@ def manage_conn(cli, srv, q):
 
                     elif msg.startswith(b"<sc_deal ") and msg.find(b'scoring="Bidding"') >= 0:
                         bidding_packet = [b"<sc_board_details result_only='n'>", msg]
-                        print(msg)
+                        #print(msg)
 
                     elif bidding_packet and msg.startswith(b"<sc_call_made"):
 
@@ -147,18 +147,17 @@ def manage_conn(cli, srv, q):
                             msg = "%s%s%s" %(msg[:idx1], msg[idx1:idx2].upper(), msg[idx2:])
 
                         bidding_packet.append(msg)
-                        print(msg)
+                        #print(msg)
 
                     elif bidding_packet and msg.startswith(b"cs_make_bid\x01"):
                         cs_msg = msg.split(b"\x01")
                         cs_msg = dict([x.split(b"=") for x in cs_msg[1:]])
                         bid = cs_msg[b"bid"]
                         if bid in [b'p', b'P', b'd', b'D', b'r', b'R']:
-                            print("**** bid ****", bid)
                             bid = bid.lower()
                         cs_msg = b'<sc_call_made table_id="%s" call="%s" alert="%s" explain="%s"/>' %(cs_msg[b"table_id"], bid, cs_msg[b"alert"].upper(), cs_msg[b"explanation"])
                         bidding_packet.append(cs_msg)
-                        print(cs_msg)
+                        #print(cs_msg)
                     
                     if bidding_packet is not None:
                         pass_count = 0
@@ -167,7 +166,7 @@ def manage_conn(cli, srv, q):
                                 pass_count += 1
                             else:
                                 break
-                        print("pass_count", pass_count)
+                        #print("pass_count", pass_count)
                         if pass_count == 3:
                             bidding_packet.append(b"</sc_board_details >")
                             bidding_msg = b"".join(bidding_packet)
