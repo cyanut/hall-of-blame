@@ -5,6 +5,7 @@ import socket
 from threading import Thread
 from select import select
 from trainer import process_game_packet
+import q as qprint
 SRV_ADDR = "192.155.229.164"
 PORT = 3336
 TEST = False
@@ -112,7 +113,7 @@ def manage_conn(cli, srv, q):
                 else:
                     source = "S"
 
-                #print(source,"=>", repr(msg))
+                #qprint(source,"=>", repr(msg))
                 target.send(msg + b"\x00")
                 if q:
                     #login info

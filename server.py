@@ -29,7 +29,7 @@ socketio = SocketIO(app)
 
 SRV_ADDR="50.22.39.6"
 WEB_SRV_ADDR="www.bridgebase.com"
-WEB_SRV_ROOT="/client/client_v48q2"
+WEB_SRV_ROOT="/client/client_v48r3"
 PORT = 3336
 q = Queue()
 
